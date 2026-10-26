@@ -309,6 +309,7 @@ export default function InteractiveDemo() {
               <div className="demo-pill-options">
                 {franchises.map((f) => (
                   <button
+                    type="button"
                     key={f}
                     onClick={() => setSelectedFranchise(f)}
                     className={`demo-slicer-btn ${selectedFranchise === f ? 'active' : ''}`}
@@ -327,6 +328,7 @@ export default function InteractiveDemo() {
               <div className="demo-pill-options">
                 {roles.map((r) => (
                   <button
+                    type="button"
                     key={r}
                     onClick={() => setSelectedRole(r)}
                     className={`demo-slicer-btn ${selectedRole === r ? 'active' : ''}`}
@@ -389,6 +391,7 @@ export default function InteractiveDemo() {
           <div className="ipl-view-tabs-bar">
             <div className="ipl-view-tabs">
               <button
+                type="button"
                 className={`ipl-tab-btn ${viewMode === 'quadrant' ? 'active' : ''}`}
                 onClick={() => setViewMode('quadrant')}
               >
@@ -396,6 +399,7 @@ export default function InteractiveDemo() {
                 <span>Dual-Pillar ROI Quadrant</span>
               </button>
               <button
+                type="button"
                 className={`ipl-tab-btn ${viewMode === 'table' ? 'active' : ''}`}
                 onClick={() => setViewMode('table')}
               >
@@ -403,6 +407,7 @@ export default function InteractiveDemo() {
                 <span>Player Valuation Matrix ({filteredPlayers.length})</span>
               </button>
               <button
+                type="button"
                 className={`ipl-tab-btn ${viewMode === 'dax' ? 'active' : ''}`}
                 onClick={() => setViewMode('dax')}
               >
@@ -414,12 +419,14 @@ export default function InteractiveDemo() {
             {viewMode === 'quadrant' && (
               <div className="roi-metric-switch">
                 <button
+                  type="button"
                   className={`roi-sub-btn ${roiMetric === 'batting' ? 'active' : ''}`}
                   onClick={() => setRoiMetric('batting')}
                 >
                   🏏 Batting ROI (Price vs Runs)
                 </button>
                 <button
+                  type="button"
                   className={`roi-sub-btn ${roiMetric === 'bowling' ? 'active' : ''}`}
                   onClick={() => setRoiMetric('bowling')}
                 >
@@ -527,6 +534,7 @@ export default function InteractiveDemo() {
                 <input
                   type="text"
                   placeholder="Filter by player, franchise (e.g. KKR, CSK, SRH), or classification..."
+                  aria-label="Filter players by name, franchise, or classification"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="table-search-input"
@@ -548,36 +556,44 @@ export default function InteractiveDemo() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredPlayers.map((player) => (
-                      <tr key={player.id}>
-                        <td className="font-semibold">{player.name}</td>
-                        <td>
-                          <span className="team-pill">{player.franchise}</span>
-                        </td>
-                        <td>{player.role}</td>
-                        <td className="font-mono">₹{player.priceCr} Cr</td>
-                        <td className="font-mono">{player.runs}</td>
-                        <td className="font-mono">{player.wickets}</td>
-                        <td className="font-mono text-cyan">
-                          {player.costPerRun
-                            ? `${player.costPerRun} / run`
-                            : `${player.costPerWicket} / wkt`}
-                        </td>
-                        <td>
-                          <span
-                            className={`badge ${
-                              player.quadrant === 'steal'
-                                ? 'badge-emerald'
-                                : player.quadrant === 'inefficient'
-                                ? 'badge-amber'
-                                : 'badge-blue'
-                            }`}
-                          >
-                            {player.classification}
-                          </span>
+                    {filteredPlayers.length > 0 ? (
+                      filteredPlayers.map((player) => (
+                        <tr key={player.id}>
+                          <td className="font-semibold">{player.name}</td>
+                          <td>
+                            <span className="team-pill">{player.franchise}</span>
+                          </td>
+                          <td>{player.role}</td>
+                          <td className="font-mono">₹{player.priceCr} Cr</td>
+                          <td className="font-mono">{player.runs}</td>
+                          <td className="font-mono">{player.wickets}</td>
+                          <td className="font-mono text-cyan">
+                            {player.costPerRun
+                              ? `${player.costPerRun} / run`
+                              : `${player.costPerWicket} / wkt`}
+                          </td>
+                          <td>
+                            <span
+                              className={`badge ${
+                                player.quadrant === 'steal'
+                                  ? 'badge-emerald'
+                                  : player.quadrant === 'inefficient'
+                                  ? 'badge-amber'
+                                  : 'badge-blue'
+                              }`}
+                            >
+                              {player.classification}
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan={8} style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-secondary)' }}>
+                          No players match the current search or filter criteria.
                         </td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

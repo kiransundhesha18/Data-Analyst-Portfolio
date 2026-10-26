@@ -12,12 +12,20 @@ import './App.css';
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('portfolio-theme') || 'dark';
+    try {
+      return localStorage.getItem('portfolio-theme') || 'dark';
+    } catch {
+      return 'dark';
+    }
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
+    try {
+      localStorage.setItem('portfolio-theme', theme);
+    } catch {
+      // Storage unavailable in restricted privacy mode
+    }
   }, [theme]);
 
   const toggleTheme = () => {

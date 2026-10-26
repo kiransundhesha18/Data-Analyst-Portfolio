@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Security: Environment variables and private secrets
+.env
+.env.local
+.env.*.local
+*.env

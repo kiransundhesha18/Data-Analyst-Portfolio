@@ -9,19 +9,50 @@ export default function Contact() {
 
   const emailAddress = 'kiransundhesha56@gmail.com';
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(emailAddress);
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2500);
+  const handleCopyEmail = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(emailAddress);
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = emailAddress;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch {
+      // Fallback if clipboard permission is denied
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return;
+    const cleanName = formData.name.trim();
+    const cleanEmail = formData.email.trim();
+    const cleanRole = formData.role.trim();
+    const cleanMsg = formData.message.trim();
+
+    if (!cleanName || !cleanEmail) return;
+
+    // Email format sanity check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
     setFormSubmitted(true);
-    // Opens mail client with prefilled details
-    const subject = encodeURIComponent(`Data Analyst Inquiry from ${formData.name} - ${formData.role || 'Opportunity'}`);
-    const body = encodeURIComponent(`Hi Kiran,\n\n${formData.message}\n\nBest regards,\n${formData.name}\n${formData.email}`);
+    // Opens mail client with safely encoded, sanitized details
+    const subject = encodeURIComponent(`Data Analyst Inquiry from ${cleanName} - ${cleanRole || 'Opportunity'}`);
+    const body = encodeURIComponent(`Hi Kiran,\n\n${cleanMsg}\n\nBest regards,\n${cleanName}\n${cleanEmail}`);
     window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
   };
 
@@ -54,9 +85,11 @@ export default function Contact() {
               </div>
               <div className="channel-actions">
                 <button
+                  type="button"
                   onClick={handleCopyEmail}
                   className="btn btn-secondary channel-btn"
                   title="Copy email address"
+                  aria-label="Copy email address"
                 >
                   {copiedEmail ? <Check size={16} className="text-emerald" /> : <Copy size={16} />}
                   <span>{copiedEmail ? 'Copied!' : 'Copy'}</span>
@@ -134,6 +167,7 @@ export default function Contact() {
                   <h4>Message Prepared!</h4>
                   <p>Opening your default email client with your message pre-filled. Looking forward to speaking!</p>
                   <button
+                    type="button"
                     onClick={() => setFormSubmitted(false)}
                     className="btn btn-secondary"
                     style={{ marginTop: '1rem' }}
@@ -150,6 +184,7 @@ export default function Contact() {
                         id="contact-name"
                         type="text"
                         required
+                        maxLength={100}
                         placeholder="e.g. Sarah Jenkins"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -162,6 +197,7 @@ export default function Contact() {
                         id="contact-email"
                         type="email"
                         required
+                        maxLength={120}
                         placeholder="sarah@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -175,6 +211,7 @@ export default function Contact() {
                     <input
                       id="contact-role"
                       type="text"
+                      maxLength={120}
                       placeholder="e.g. Junior Data Analyst / BI Specialist"
                       value={formData.role}
                       onChange={(e) => setFormData({ ...formData, role: e.target.value })}
@@ -187,6 +224,7 @@ export default function Contact() {
                     <textarea
                       id="contact-message"
                       rows={4}
+                      maxLength={1500}
                       placeholder="Tell me about the role, team, or data challenge you're solving..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}

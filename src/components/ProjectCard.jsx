@@ -41,7 +41,7 @@ export default function ProjectCard({ project }) {
           <span className="project-category-name">{project.category} Project</span>
         </div>
         <div className="project-tags-wrap">
-          {project.toolTags.slice(0, 3).map((tag) => (
+          {(project.toolTags || []).slice(0, 3).map((tag) => (
             <span key={tag} className={`badge ${getBadgeClass(project.badgeColor)}`}>
               {tag}
             </span>
@@ -124,6 +124,7 @@ export default function ProjectCard({ project }) {
 
         {project.highlights && (
           <button
+            type="button"
             onClick={() => setExpanded(!expanded)}
             className="btn btn-ghost project-toggle-btn"
             aria-expanded={expanded}

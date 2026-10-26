@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiran Sundhesha Portfolio — Project Architecture & Customization Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --card-bg: #ffffff;
+      --code-bg: #0f172a;
+      --code-text: #e2e8f0;
+      --emerald: #059669;
+      --amber: #d97706;
+      --purple: #7c3aed;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg-subtle);
+      padding: 2rem 1rem 5rem;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 3rem 3.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    /* Floating Print Button */
+    .print-bar {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+    }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    header.doc-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      border: 1px solid #bfdbfe;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-meta {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #334155;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #334155;
+      font-size: 0.98rem;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.25rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    th {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    /* Code blocks */
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      font-family: 'JetBrains Mono', monospace;
+      padding: 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 1rem 0 1.5rem;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88em;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      border: none;
+    }
+
+    /* Cards */
+    .info-card {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.25rem 0;
+      font-size: 0.94rem;
+      color: #1e3a8a;
+    }
+
+    .success-card {
+      background: #ecfdf5;
+      border-left: 4px solid var(--emerald);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.25rem 0;
+      font-size: 0.94rem;
+      color: #064e3b;
+    }
+
+    .file-tree {
+      background: #0f172a;
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 1.25rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .file-tree .dir {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .file-tree .comment {
+      color: #64748b;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .tag-blue { background: #dbeafe; color: #1e40af; }
+    .tag-green { background: #d1fae5; color: #065f46; }
+    .tag-amber { background: #fef3c7; color: #92400e; }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 100%;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      h2 {
+        page-break-before: auto;
+        page-break-after: avoid;
+      }
+
+      pre, table, .info-card, .file-tree {
+        page-break-inside: avoid;
+      }
+
+      @page {
+        margin: 18mm 15mm 18mm 15mm;
+        size: A4 portrait;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar no-print">
+    <button class="print-btn" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </svg>
+      <span>Save as PDF / Print</span>
+    </button>
+  </div>
+
+  <div class="container">
+    <header class="doc-header">
+      <div class="badge-pill">Technical Documentation & Architecture Manual</div>
+      <h1>Kiran Sundhesha Portfolio Manual</h1>
+      <div class="doc-meta">
+        <strong>Author:</strong> Kiran Sundhesha (Data Analyst) &bull; 
+        <strong>Email:</strong> kiransundhesha56@gmail.com &bull; 
+        <strong>LinkedIn:</strong> linkedin.com/in/kiransundhesha018
+      </div>
+    </header>
+
+    <div class="info-card">
+      <strong>💡 How to Save this Guide as a PDF:</strong><br>
+      Click the blue <strong>"Save as PDF / Print"</strong> button in the bottom right corner (or press <code>Ctrl + P</code>). In the destination dropdown, choose <strong>"Save as PDF"</strong> and ensure <em>Background Graphics</em> is checked.
+    </div>
+
+    <!-- Section 1 -->
+    <h2>1. Executive Summary & Purpose</h2>
+    <p>
+      This portfolio is an interactive, production-grade web application engineered to showcase technical data analytics capability to recruiters, hiring managers, and commercial stakeholders.
+    </p>
+    <p>
+      Unlike conventional web developer portfolios, every component here emphasizes:
+    </p>
+    <ul>
+      <li><strong>Commercial Value:</strong> Problem statements, revenue uplift, inventory risk management, and unit economics.</li>
+      <li><strong>Analytical Tooling:</strong> Power BI (DAX, Star Schema, Power Query ETL), Advanced Excel (XLOOKUP, Dynamic Arrays, Financial Modeling), and Relational SQL.</li>
+      <li><strong>Live In-Browser Simulation:</strong> An interactive IPL Auction Moneyball dashboard allowing recruiters to filter, inspect quadrants, and review DAX logic without external BI licenses.</li>
+    </ul>
+
+    <!-- Section 2 -->
+    <h2>2. WHERE Everything Lives (File Structure)</h2>
+    <p>The project follows a clean, modular structure where content, presentation, and logic are decoupled:</p>
+
+    <div class="file-tree">
+<span class="dir">d:\data-Portfolio\</span>
+├── <span class="dir">public/</span>                   <span class="comment"># Static files served directly at root /</span>
+│   ├── Resume.pdf            <span class="comment"># PDF downloaded by "Download Resume" buttons</span>
+│   └── resume.pdf            <span class="comment"># Lowercase copy for server compatibility</span>
+│
+├── <span class="dir">src/</span>                      <span class="comment"># Core application source code</span>
+│   ├── <span class="dir">components/</span>           <span class="comment"># Individual UI sections</span>
+│   │   ├── Navbar.jsx        <span class="comment"># Sticky header, theme toggle, mobile drawer</span>
+│   │   ├── Hero.jsx          <span class="comment"># Hero headline, value proposition, SVG chart tabs</span>
+│   │   ├── Projects.jsx      <span class="comment"># Projects filter tabs (All, Power BI, Excel, SQL)</span>
+│   │   ├── ProjectCard.jsx   <span class="comment"># Individual CAR case study card component</span>
+│   │   ├── InteractiveDemo.jsx <span class="comment"># Live interactive IPL Moneyball data dashboard</span>
+│   │   ├── Skills.jsx        <span class="comment"># Categorized technical competencies matrix</span>
+│   │   ├── About.jsx         <span class="comment"># Candidate profile & 3 analytical pillars</span>
+│   │   ├── Resume.jsx        <span class="comment"># Credentials section & 1-click recruiter summary copy</span>
+│   │   ├── Contact.jsx       <span class="comment"># Email copy card, LinkedIn card, GitHub, contact form</span>
+│   │   ├── Footer.jsx        <span class="comment"># Social buttons, navigation links, back-to-top</span>
+│   │   └── Icons.jsx         <span class="comment"># Vector icons (GitHub & LinkedIn logos)</span>
+│   │
+│   ├── <span class="dir">data/</span>                 <span class="comment"># Data layer (Pure JavaScript objects)</span>
+│   │   ├── ProjectsData.js   <span class="comment"># List of projects, metrics, tags, and case studies</span>
+│   │   └── SkillData.js      <span class="comment"># Skill categories, items, and mastery statuses</span>
+│   │
+│   ├── App.css               <span class="comment"># Glassmorphism, animations, responsive styling</span>
+│   ├── App.jsx               <span class="comment"># Main page orchestrator & theme state manager</span>
+│   ├── index.css             <span class="comment"># Design tokens, CSS variables, typography</span>
+│   └── main.jsx              <span class="comment"># React DOM entry point</span>
+│
+├── index.html                <span class="comment"># HTML document & Google Fonts imports</span>
+└── package.json              <span class="comment"># React 19, Vite 8, Lucide React dependencies</span>
+    </div>
+
+    <!-- Section 3 -->
+    <h2>3. WHY These Technologies Were Chosen</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Technology</th>
+          <th>Role in Project</th>
+          <th>Why It Was Chosen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>React 19</strong></td>
+          <td>UI Framework</td>
+          <td>Allows modular, reusable components (e.g. <code>ProjectCard</code>) and smooth state changes (theme toggle, metric tab switching).</td>
+        </tr>
+        <tr>
+          <td><strong>Vite 8</strong></td>
+          <td>Build Tool</td>
+          <td>Starts in ~250ms, provides instant Hot Module Replacement (HMR), and builds lightweight, optimized production bundles.</td>
+        </tr>
+        <tr>
+          <td><strong>Decoupled Data Layer</strong></td>
+          <td>Data Architecture</td>
+          <td>Allows you to add/edit projects and skills in <code>src/data/</code> without modifying any React or HTML layout code.</td>
+        </tr>
+        <tr>
+          <td><strong>Vanilla CSS Tokens</strong></td>
+          <td>Design System</td>
+          <td>Enables seamless dark/light theme switching, custom glassmorphism, and zero framework bloat.</td>
+        </tr>
+        <tr>
+          <td><strong>Lucide React</strong></td>
+          <td>Icon Library</td>
+          <td>Lightweight, crisp SVGs with zero image download delay.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 4 -->
+    <h2>4. WHAT Each Section Does</h2>
+
+    <h3>4.1 Navbar (<code>src/components/Navbar.jsx</code>)</h3>
+    <p>Provides brand recognition ("KIRAN SUNDHESHA - Data Analyst"), smooth anchor navigation to <code>#projects</code>, <code>#skills</code>, <code>#about</code>, <code>#resume</code>, and <code>#contact</code>, a dark/light mode switcher, and a mobile hamburger menu.</p>
+
+    <h3>4.2 Hero (<code>src/components/Hero.jsx</code>)</h3>
+    <p>Delivers the core value proposition: <em>"Turning Complex Data Into Actionable Business Value."</em> On the right, an interactive SVG trend card lets visitors toggle between <strong>YoY Sales & Margin</strong>, <strong>Retail Supply Chain</strong>, and <strong>Cohort Retention SQL</strong>.</p>
+
+    <h3>4.3 Projects Showcase (<code>src/components/Projects.jsx</code> & <code>ProjectCard.jsx</code>)</h3>
+    <p>Displays detailed case studies structured under the <strong>Context-Action-Result (CAR)</strong> format:</p>
+    <ul>
+      <li><strong>Problem:</strong> Explains the business challenge and financial stakes.</li>
+      <li><strong>Methodology:</strong> Details the data pipeline, data modeling, DAX, or SQL queries.</li>
+      <li><strong>Business Impact:</strong> Quantified metrics (e.g., +24.6% YoY, 18+ Draft Steals, -35% stockout risk).</li>
+    </ul>
+
+    <h3>4.4 Interactive IPL Moneyball Demo (<code>src/components/InteractiveDemo.jsx</code>)</h3>
+    <p>A live simulator modeled on real 2024 IPL auction data. Recruiters can test franchise slicers (SRH, KKR, CSK, RCB), filter player roles (Batter vs Bowler), switch between a 4-quadrant scatter chart and a data table, and view custom DAX formulas.</p>
+
+    <h3>4.5 Skills Matrix (<code>src/components/Skills.jsx</code>)</h3>
+    <p>Organizes technical skills into 4 distinct pillars (Power BI, Advanced Excel, SQL, Business Analytics) with color-coded mastery tags: <span class="tag tag-green">Mastered</span>, <span class="tag tag-blue">Proficient</span>, <span class="tag tag-amber">In Progress</span>.</p>
+
+    <h3>4.6 Credentials & Resume (<code>src/components/Resume.jsx</code>)</h3>
+    <p>Features a direct "Download Resume (PDF)" button pointing to <code>/resume.pdf</code> and a 1-click "Copy Summary" button formatted for recruiter intake screens.</p>
+
+    <h3>4.7 Contact & Inquiries (<code>src/components/Contact.jsx</code>)</h3>
+    <p>Contains 1-click clipboard email copying (<code>kiransundhesha56@gmail.com</code>), verified LinkedIn and GitHub links, an immediate availability badge, and a prefilled message composer.</p>
+
+    <!-- Section 5 -->
+    <h2>5. STEP-BY-STEP: How to Change Everything Yourself</h2>
+
+    <h3>Step 5.1: Changing Your Email, LinkedIn, or GitHub</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Target Detail</th>
+          <th>File</th>
+          <th>Line Number</th>
+          <th>Instruction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Email Address</strong></td>
+          <td><code>src/components/Contact.jsx</code></td>
+          <td>Line 10</td>
+          <td>Update <code>const emailAddress = 'your_email@gmail.com';</code></td>
+        </tr>
+        <tr>
+          <td><strong>Footer Email</strong></td>
+          <td><code>src/components/Footer.jsx</code></td>
+          <td>Line 41</td>
+          <td>Update <code>href="mailto:your_email@gmail.com"</code></td>
+        </tr>
+        <tr>
+          <td><strong>LinkedIn Link</strong></td>
+          <td><code>src/components/Contact.jsx</code></td>
+          <td>Line 76 & 86</td>
+          <td>Update <code>href="https://www.linkedin.com/in/your_handle"</code></td>
+        </tr>
+        <tr>
+          <td><strong>Footer LinkedIn</strong></td>
+          <td><code>src/components/Footer.jsx</code></td>
+          <td>Line 48</td>
+          <td>Update <code>href="https://www.linkedin.com/in/your_handle"</code></td>
+        </tr>
+        <tr>
+          <td><strong>GitHub Link</strong></td>
+          <td><code>src/components/Contact.jsx</code></td>
+          <td>Line 93 & 103</td>
+          <td>Update <code>href="https://github.com/your_handle"</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Step 5.2: Adding a New Project</h3>
+    <p>Open <code>src/data/ProjectsData.js</code> and paste a new project object into the <code>projectsData</code> array:</p>
+    <pre><code>{
+  id: 'customer-churn-sql',
+  title: 'Customer Churn & Cohort Retention Analysis',
+  category: 'SQL', // 'Power BI' | 'Excel' | 'SQL'
+  subtitle: 'Relational Database Querying & Cohort LTV Model',
+  toolTags: ['PostgreSQL', 'CTEs', 'Window Functions', 'Cohort Analysis'],
+  problem: 'Monthly customer churn increased to 8.2%, reducing recurring revenue.',
+  methodology: 'Built CTE queries calculating rolling retention across 30, 60, and 90-day cohorts.',
+  impact: 'Identified the 45-day churn threshold, enabling re-engagement that saved $34K ARR.',
+  keyMetrics: [
+    { label: 'Churn Reduction', value: '-3.1%' },
+    { label: 'ARR Saved', value: '$34,000' }
+  ],
+  highlights: [
+    'Optimized SQL queries reducing execution time by 60%',
+    'Automated RFM segmentation table'
+  ],
+  liveLink: 'https://github.com/kiransundhesha18',
+  docsLink: 'https://github.com/kiransundhesha18',
+  badgeColor: 'blue'
+}</code></pre>
+
+    <h3>Step 5.3: Updating Skills</h3>
+    <p>Open <code>src/data/SkillData.js</code>, find the category (e.g. <code>power-bi</code> or <code>sql</code>), and add or edit items:</p>
+    <pre><code>{ name: 'Python for Data Analysis (Pandas, NumPy)', status: 'Mastered' }</code></pre>
+
+    <h3>Step 5.4: Updating the Resume PDF</h3>
+    <ol>
+      <li>Export your resume from Word/Canva/Google Docs as a <strong>PDF</strong>.</li>
+      <li>Name the file <code>resume.pdf</code>.</li>
+      <li>Copy it into the <code>public/</code> folder: <code>d:\data-Portfolio\public\resume.pdf</code>.</li>
+      <li>Also keep a copy as <code>Resume.pdf</code> to prevent 404s on case-sensitive servers.</li>
+    </ol>
+
+    <h3>Step 5.5: Changing Colors & Theme Tokens</h3>
+    <p>Open <code>src/index.css</code> to modify brand colors:</p>
+    <pre><code>:root {
+  --accent-blue: #3b82f6;       /* Primary interactive color */
+  --accent-cyan: #06b6d4;       /* Gradient secondary accent */
+  --accent-emerald: #10b981;    /* Positive KPIs and status pill */
+  --accent-purple: #8b5cf6;     /* Analytics category badge */
+  --accent-amber: #f59e0b;      /* Power BI highlight badge */
+  --bg-primary: #07090e;        /* Dark background tone */
+}</code></pre>
+
+    <!-- Section 6 -->
+    <h2>6. Deploying to the Web (Free Hosting)</h2>
+    <div class="success-card">
+      <strong>Recommended: Deploy on Vercel</strong><br>
+      1. Push your changes to GitHub: <code>git add . && git commit -m "Portfolio update" && git push</code><br>
+      2. Visit <a href="https://vercel.com" target="_blank">vercel.com</a> and connect your GitHub repository.<br>
+      3. Framework Preset: <strong>Vite</strong> &bull; Build Command: <code>npm run build</code> &bull; Output: <code>dist</code><br>
+      4. Click <strong>Deploy</strong>. Your site will be online with a free custom URL and SSL certificate!
+    </div>
+  </div>
+
+</body>
+</html>

@@ -39,6 +39,7 @@ export default function Projects() {
                   : projectsData.filter((p) => p.category === cat).length;
               return (
                 <button
+                  type="button"
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   className={`filter-tab-btn ${selectedCategory === cat ? 'active' : ''}`}
@@ -53,9 +54,15 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="projects-grid">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          ) : (
+            <div className="glass-card" style={{ padding: '2.5rem', textAlign: 'center', gridColumn: '1 / -1' }}>
+              <p style={{ color: 'var(--text-secondary)' }}>No projects found for the selected category.</p>
+            </div>
+          )}
         </div>
       </div>
     </section>

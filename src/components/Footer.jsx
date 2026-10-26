@@ -71,7 +71,12 @@ export default function Footer() {
             &copy; {currentYear} Kiran Sundhesha. All rights reserved. Built with React & Vite.
           </p>
 
-          <button onClick={scrollToTop} className="back-to-top-btn" aria-label="Back to top">
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="back-to-top-btn"
+            aria-label="Back to top"
+          >
             <span>Back to top</span>
             <ArrowUp size={16} />
           </button>

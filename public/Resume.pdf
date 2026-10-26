@@ -1,0 +1,64 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 2730 >>
+stream
+BT /F2 20 Tf 50 790 Td (KIRAN SUNDHESHA) Tj ET
+BT /F1 12 Tf 50 770 Td (Data Analyst | Business Intelligence Specialist) Tj ET
+BT /F1 10 Tf 50 752 Td (Email: kiransundhesha56@gmail.com | LinkedIn: linkedin.com/in/kiransundhesha018) Tj ET
+BT /F1 10 Tf 50 738 Td (GitHub: github.com/kiransundhesha18 | Location: India) Tj ET
+BT /F1 10 Tf 50 724 Td (____________________________________________________________________________________) Tj ET
+BT /F2 12 Tf 50 700 Td (PROFESSIONAL SUMMARY) Tj ET
+BT /F1 10 Tf 50 684 Td (Commercially focused Entry-Level Data Analyst skilled in Power BI, Advanced Excel, and SQL.) Tj ET
+BT /F1 10 Tf 50 670 Td (Experienced in architecting Star Schema data models, Power Query ETL pipelines, and executive) Tj ET
+BT /F1 10 Tf 50 656 Td (dashboards that deliver actionable business insights and optimize operational performance.) Tj ET
+BT /F2 12 Tf 50 628 Td (CORE TECHNICAL COMPETENCIES) Tj ET
+BT /F1 10 Tf 50 612 Td (- Business Intelligence: Power BI, DAX Measures, Power Query, Star Schema, KPI Dashboards) Tj ET
+BT /F1 10 Tf 50 598 Td (- Spreadsheets: Advanced Excel, XLOOKUP, Dynamic Arrays, PivotTables, What-If Modeling) Tj ET
+BT /F1 10 Tf 50 584 Td (- Database & SQL: Relational Queries, JOINs, Aggregate Functions, GROUP BY, Data Hygiene) Tj ET
+BT /F1 10 Tf 50 570 Td (- Analytics: Variance Analysis, Cohort Retention, Supply Chain Diagnostics, Unit Economics) Tj ET
+BT /F2 12 Tf 50 542 Td (FEATURED PORTFOLIO PROJECTS) Tj ET
+BT /F2 11 Tf 50 524 Td (1. IPL Franchise Valuation & Player ROI Analytics [Power BI & DAX]) Tj ET
+BT /F1 10 Tf 50 509 Td (   - Modeled Rs. 1,192 Cr auction spend across 10 franchises with Power Query ETL.) Tj ET
+BT /F1 10 Tf 50 495 Td (   - Engineered 14+ custom DAX measures for Cost-Per-Run and Cost-Per-Wicket ROI.) Tj ET
+BT /F1 10 Tf 50 481 Td (   - Built 4-quadrant scatter matrices pinpointing 18+ undervalued draft steals.) Tj ET
+BT /F2 11 Tf 50 455 Td (2. Enterprise Retail & Supply Chain Performance Suite [Advanced Excel]) Tj ET
+BT /F1 10 Tf 50 440 Td (   - Analyzed 185K+ transaction rows with automated multi-tab Excel financial engine.) Tj ET
+BT /F1 10 Tf 50 426 Td (   - Modeled regional logistics SLA breaches and return-to-origin courier penalties.) Tj ET
+BT /F1 10 Tf 50 412 Td (   - Simulated 35% reduction in stockout risk via automated reorder threshold triggers.) Tj ET
+BT /F2 11 Tf 50 386 Td (3. Cohort Retention & Customer LTV Analysis [SQL & Relational Databases]) Tj ET
+BT /F1 10 Tf 50 371 Td (   - Executed complex relational JOINs and aggregations across customer purchase logs.) Tj ET
+BT /F1 10 Tf 50 357 Td (   - Identified 45-day retention cliff and modeled repeat buyer transaction frequency.) Tj ET
+BT /F2 12 Tf 50 326 Td (EDUCATION & CREDENTIALS) Tj ET
+BT /F1 10 Tf 50 308 Td (- Comprehensive Data Analytics & Business Intelligence Program [Completed 2026]) Tj ET
+BT /F1 10 Tf 50 294 Td (- Hands-on Case Studies in Power BI, SQL Queries, and Financial Spreadsheet Modeling) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000252 00000 n 
+0000000321 00000 n 
+0000000395 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+3176
+%%EOF

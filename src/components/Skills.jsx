@@ -50,7 +50,7 @@ export default function Skills() {
 
         {/* Quick Quantitative Stats Row */}
         <div className="skills-stats-grid">
-          {quickStats.map((stat, idx) => (
+          {(quickStats || []).map((stat, idx) => (
             <div key={idx} className="stat-card glass-card">
               <span className="stat-number gradient-text">{stat.value}</span>
               <span className="stat-title">{stat.label}</span>
@@ -61,7 +61,7 @@ export default function Skills() {
 
         {/* Skills Cards Grid */}
         <div className="skills-matrix-grid">
-          {skillsData.map((category) => (
+          {(skillsData || []).map((category) => (
             <div key={category.id} className="skill-card glass-card">
               <div className="skill-card-top">
                 <div className="skill-icon-box">

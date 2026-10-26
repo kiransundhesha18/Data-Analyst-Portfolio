@@ -4,14 +4,31 @@ import { Download, FileText, CheckCircle2, Copy, Check, ExternalLink } from 'luc
 export default function Resume() {
   const [copied, setCopied] = useState(false);
 
-  const handleCopySummary = () => {
+  const handleCopySummary = async () => {
     const summary = `Kiran Sundhesha - Entry-Level Data Analyst
 Core Competencies: Power BI, Advanced Excel, SQL, DAX, Power Query ETL, Star Schema Modeling
 Projects: IPL Franchise Valuation ROI, Enterprise Retail & Supply Chain Suite, Customer Retention SQL Analysis
 Ready for immediate opportunities.`;
-    navigator.clipboard.writeText(summary);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(summary);
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = summary;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.focus();
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
   };
 
   return (
@@ -48,7 +65,7 @@ Ready for immediate opportunities.`;
 
             <div className="resume-actions-group">
               <a
-                href="/resume.pdf"
+                href="/Resume.pdf"
                 download="Kiran_Sundhesha_Data_Analyst_Resume.pdf"
                 className="btn btn-primary resume-download-btn"
               >
@@ -56,6 +73,7 @@ Ready for immediate opportunities.`;
                 <span>Download Resume (PDF)</span>
               </a>
               <button
+                type="button"
                 onClick={handleCopySummary}
                 className="btn btn-secondary"
                 title="Copy quick summary for recruiters"

@@ -9,8 +9,18 @@ export default function Navbar({ theme, toggleTheme }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Close mobile menu on Escape key press for accessibility
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const navLinks = [
@@ -48,6 +58,7 @@ export default function Navbar({ theme, toggleTheme }) {
             <span>Contact</span>
           </a>
           <button
+            type="button"
             onClick={toggleTheme}
             className="theme-toggle-btn"
             aria-label="Toggle dark/light theme"
@@ -60,6 +71,7 @@ export default function Navbar({ theme, toggleTheme }) {
         {/* Mobile Action Controls */}
         <div className="navbar-mobile-actions">
           <button
+            type="button"
             onClick={toggleTheme}
             className="theme-toggle-btn"
             aria-label="Toggle theme"
@@ -67,6 +79,7 @@ export default function Navbar({ theme, toggleTheme }) {
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="mobile-menu-btn"
             aria-label="Toggle menu"
@@ -100,7 +113,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 <Send size={16} /> Let's Connect
               </a>
               <a
-                href="/resume.pdf"
+                href="/Resume.pdf"
                 download="Kiran_Sundhesha_Data_Analyst.pdf"
                 className="btn btn-secondary"
                 style={{ width: '100%', marginTop: '0.5rem' }}

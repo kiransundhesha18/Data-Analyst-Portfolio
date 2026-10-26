@@ -34,7 +34,7 @@ export default function Hero() {
     },
   };
 
-  const currentData = metricTabs[activeTab];
+  const currentData = metricTabs[activeTab] || metricTabs.sales;
 
   return (
     <section id="home" className="hero-section">
@@ -63,7 +63,7 @@ export default function Hero() {
               <ArrowRight size={17} />
             </a>
             <a
-              href="/resume.pdf"
+              href="/Resume.pdf"
               download="Kiran_Sundhesha_Data_Analyst.pdf"
               className="btn btn-secondary"
             >
@@ -104,18 +104,21 @@ export default function Hero() {
             {/* Interactive Tab Switcher */}
             <div className="dashboard-tabs">
               <button
+                type="button"
                 className={`dashboard-tab ${activeTab === 'sales' ? 'active' : ''}`}
                 onClick={() => setActiveTab('sales')}
               >
                 Revenue YoY
               </button>
               <button
+                type="button"
                 className={`dashboard-tab ${activeTab === 'inventory' ? 'active' : ''}`}
                 onClick={() => setActiveTab('inventory')}
               >
                 Inventory
               </button>
               <button
+                type="button"
                 className={`dashboard-tab ${activeTab === 'retention' ? 'active' : ''}`}
                 onClick={() => setActiveTab('retention')}
               >
