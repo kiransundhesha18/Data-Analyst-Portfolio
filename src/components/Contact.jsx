@@ -68,7 +68,7 @@ export default function Contact() {
           {/* Direct Contact Cards */}
           <div className="contact-info-col">
             {/* Email Card */}
-            <div className="contact-card">
+            <div className="contact-card contact-email-card">
               <div className="contact-card-icon">
                 <Mail size={20} className="text-accent" />
               </div>
