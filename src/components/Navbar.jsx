@@ -53,7 +53,7 @@ export default function Navbar({ theme, toggleTheme }) {
           ))}
 
           <a
-            href="/Resume.pdf"
+            href={`${import.meta.env.BASE_URL}Resume.pdf`}
             download="Kiran_Sundhesha_Data_Analyst.pdf"
             className="nav-btn-outline"
             title="Download Resume"
@@ -112,7 +112,7 @@ export default function Navbar({ theme, toggleTheme }) {
               ))}
               <div className="mobile-menu-divider"></div>
               <a
-                href="/Resume.pdf"
+                href={`${import.meta.env.BASE_URL}Resume.pdf`}
                 download="Kiran_Sundhesha_Data_Analyst.pdf"
                 className="btn btn-secondary mobile-menu-cta"
                 onClick={() => setIsMenuOpen(false)}

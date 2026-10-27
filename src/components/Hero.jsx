@@ -42,7 +42,7 @@ export default function Hero() {
               <ArrowRight size={16} />
             </a>
             <a
-              href="/Resume.pdf"
+              href={`${import.meta.env.BASE_URL}Resume.pdf`}
               download="Kiran_Sundhesha_Data_Analyst.pdf"
               className="btn btn-secondary"
             >

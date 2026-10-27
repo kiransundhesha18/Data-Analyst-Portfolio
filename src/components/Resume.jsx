@@ -66,7 +66,7 @@ LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
 
             <div className="resume-banner-actions">
               <a
-                href="/Resume.pdf"
+                href={`${import.meta.env.BASE_URL}Resume.pdf`}
                 download="Kiran_Sundhesha_Data_Analyst.pdf"
                 className="btn btn-primary"
               >
