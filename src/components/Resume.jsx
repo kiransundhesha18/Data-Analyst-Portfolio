@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Download, FileText, CheckCircle2, Copy, Check } from 'lucide-react';
+import { Download, FileText, CheckCircle2, Copy, Check, GraduationCap } from 'lucide-react';
 
 export default function Resume() {
   const [copied, setCopied] = useState(false);
 
   const handleCopySummary = async () => {
     const summary = `Kiran Sundhesha - Aspiring Data Analyst
+Education: MCA - Master of Computer Applications (2026) | BCA (2024)
 Core Skills: Power BI, Advanced Excel, SQL, DAX, Power Query ETL, Star Schema Modeling
 Projects: IPL Player Auction & Valuation Analytics, Retail Sales & Supply Chain Analytics, Customer Retention in SQL
 Status: Open to Full-time & Remote Data Analyst roles (Immediate Joiner)
@@ -55,9 +56,10 @@ LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
               </div>
               <div>
                 <h3 className="resume-name">Kiran Sundhesha</h3>
-                <p className="resume-role">Data Analyst Resume • 2026 Edition</p>
+                <p className="resume-role">Data Analyst Resume • MCA & BCA Graduate</p>
                 <div className="resume-tags">
                   <span className="resume-tag">PDF Format</span>
+                  <span className="resume-tag">MCA & BCA</span>
                   <span className="resume-tag">Power BI • SQL • Excel</span>
                   <span className="resume-tag">Immediate Joiner</span>
                 </div>
@@ -88,6 +90,17 @@ LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
 
           {/* Highlights Grid */}
           <div className="resume-highlights-grid">
+            <div className="resume-highlight-box">
+              <div className="highlight-box-header">
+                <GraduationCap size={18} className="text-accent" />
+                <h4 className="highlight-box-title">Education & Degrees</h4>
+              </div>
+              <p className="highlight-box-desc">
+                <strong>MCA</strong> - Master of Computer Applications (2026)<br />
+                <strong>BCA</strong> - Bachelor of Computer Applications (2024)
+              </p>
+            </div>
+
             <div className="resume-highlight-box">
               <div className="highlight-box-header">
                 <CheckCircle2 size={18} className="text-accent" />

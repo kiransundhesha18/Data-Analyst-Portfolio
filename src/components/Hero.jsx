@@ -125,8 +125,8 @@ export default function Hero() {
                   <Award size={16} />
                 </div>
                 <div>
-                  <span className="highlight-title">Certified Analyst</span>
-                  <span className="highlight-desc">Hands-on BI & SQL coursework</span>
+                  <span className="highlight-title">MCA & BCA Graduate</span>
+                  <span className="highlight-desc">Master of Computer Applications (2026)</span>
                 </div>
               </div>
 

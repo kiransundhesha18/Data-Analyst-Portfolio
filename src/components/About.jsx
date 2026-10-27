@@ -73,8 +73,8 @@ export default function About() {
                     <GraduationCap size={16} />
                   </div>
                   <div>
-                    <span className="fact-label">Training</span>
-                    <span className="fact-val">Certified Data Analytics Graduate</span>
+                    <span className="fact-label">Education</span>
+                    <span className="fact-val">MCA (2026) • BCA (2024)</span>
                   </div>
                 </div>
 
