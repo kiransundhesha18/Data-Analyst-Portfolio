@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Download, FileText, CheckCircle2, Copy, Check, ExternalLink } from 'lucide-react';
+import { Download, FileText, CheckCircle2, Copy, Check } from 'lucide-react';
 
 export default function Resume() {
   const [copied, setCopied] = useState(false);
 
   const handleCopySummary = async () => {
-    const summary = `Kiran Sundhesha - Entry-Level Data Analyst
-Core Competencies: Power BI, Advanced Excel, SQL, DAX, Power Query ETL, Star Schema Modeling
-Projects: IPL Franchise Valuation ROI, Enterprise Retail & Supply Chain Suite, Customer Retention SQL Analysis
-Ready for immediate opportunities.`;
+    const summary = `Kiran Sundhesha - Aspiring Data Analyst
+Core Skills: Power BI, Advanced Excel, SQL, DAX, Power Query ETL, Star Schema Modeling
+Projects: IPL Player Auction & Valuation Analytics, Retail Sales & Supply Chain Analytics, Customer Retention in SQL
+Status: Open to Full-time & Remote Data Analyst roles (Immediate Joiner)
+Email: kiransundhesha56@gmail.com
+GitHub: https://github.com/kiransundhesha18
+LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
+
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(summary);
@@ -32,87 +36,88 @@ Ready for immediate opportunities.`;
   };
 
   return (
-    <section id="resume" className="resume-section">
+    <section id="resume" className="section resume-section">
       <div className="container">
         <div className="section-header">
-          <div className="section-pill">
-            <FileText size={14} />
-            <span>Credentials & Resume</span>
-          </div>
-          <h2 className="section-title">Ready for Your Analytics Team</h2>
+          <span className="section-eyebrow">Credentials</span>
+          <h2 className="section-title">Resume & Background</h2>
           <p className="section-subtitle">
-            Download my comprehensive resume detailing coursework, technical competencies, 
-            and hands-on portfolio case studies.
+            Download my resume or grab a quick qualifications summary for recruiting.
           </p>
         </div>
 
-        <div className="resume-card-container">
-          <div className="resume-showcase-card glass-card">
-            <div className="resume-card-left">
-              <div className="resume-icon-badge">
-                <FileText size={32} className="text-blue" />
+        <div className="resume-card-wrapper">
+          {/* Main Action Banner */}
+          <div className="resume-banner">
+            <div className="resume-banner-info">
+              <div className="resume-file-icon">
+                <FileText size={28} />
               </div>
-              <div className="resume-info-text">
-                <h3 className="resume-candidate-name">Kiran Sundhesha</h3>
-                <p className="resume-role-sub">Data Analyst & BI Specialist</p>
-                <div className="resume-pills-row">
-                  <span className="badge badge-blue">PDF Document</span>
-                  <span className="badge badge-emerald">Updated October 2026</span>
-                  <span className="badge badge-purple">ATS-Optimized</span>
+              <div>
+                <h3 className="resume-name">Kiran Sundhesha</h3>
+                <p className="resume-role">Data Analyst Resume • 2026 Edition</p>
+                <div className="resume-tags">
+                  <span className="resume-tag">PDF Format</span>
+                  <span className="resume-tag">Power BI • SQL • Excel</span>
+                  <span className="resume-tag">Immediate Joiner</span>
                 </div>
               </div>
             </div>
 
-            <div className="resume-actions-group">
+            <div className="resume-banner-actions">
               <a
                 href="/Resume.pdf"
-                download="Kiran_Sundhesha_Data_Analyst_Resume.pdf"
-                className="btn btn-primary resume-download-btn"
+                download="Kiran_Sundhesha_Data_Analyst.pdf"
+                className="btn btn-primary"
               >
-                <Download size={18} />
+                <Download size={16} />
                 <span>Download Resume (PDF)</span>
               </a>
+
               <button
                 type="button"
                 onClick={handleCopySummary}
                 className="btn btn-secondary"
-                title="Copy quick summary for recruiters"
+                title="Copy recruiter summary to clipboard"
               >
-                {copied ? <Check size={18} className="text-emerald" /> : <Copy size={18} />}
+                {copied ? <Check size={16} className="text-emerald" /> : <Copy size={16} />}
                 <span>{copied ? 'Summary Copied!' : 'Copy Summary'}</span>
               </button>
             </div>
           </div>
 
-          {/* Quick Overview Grid */}
-          <div className="resume-quick-overview-grid">
-            <div className="overview-mini-card glass-card">
-              <h4 className="overview-title">
-                <CheckCircle2 size={16} className="text-blue" />
-                <span>Core Technical Stack</span>
-              </h4>
-              <p className="overview-text">
-                Power BI (DAX, Modeling), Microsoft Excel (PivotTables, Advanced Formulas), SQL (JOINs, Aggregations, GROUP BY), Power Query ETL.
+          {/* Highlights Grid */}
+          <div className="resume-highlights-grid">
+            <div className="resume-highlight-box">
+              <div className="highlight-box-header">
+                <CheckCircle2 size={18} className="text-accent" />
+                <h4 className="highlight-box-title">Technical Toolkit</h4>
+              </div>
+              <p className="highlight-box-desc">
+                Power BI (DAX, Star Schema), Advanced Excel (PivotTables, Dynamic Formulas), 
+                SQL (Multi-Table JOINs, Aggregations), Power Query ETL.
               </p>
             </div>
 
-            <div className="overview-mini-card glass-card">
-              <h4 className="overview-title">
-                <CheckCircle2 size={16} className="text-emerald" />
-                <span>Business Readiness</span>
-              </h4>
-              <p className="overview-text">
-                Trained to identify revenue variance, calculate unit economics, quantify inventory holding costs, and communicate insights to leadership.
+            <div className="resume-highlight-box">
+              <div className="highlight-box-header">
+                <CheckCircle2 size={18} className="text-accent" />
+                <h4 className="highlight-box-title">Analytical Strengths</h4>
+              </div>
+              <p className="highlight-box-desc">
+                Data cleaning, anomaly detection, cohort retention, supply chain metrics, 
+                and executive dashboard storytelling.
               </p>
             </div>
 
-            <div className="overview-mini-card glass-card">
-              <h4 className="overview-title">
-                <CheckCircle2 size={16} className="text-purple" />
-                <span>Availability & Terms</span>
-              </h4>
-              <p className="overview-text">
-                Available immediately for full-time entry-level Data Analyst, BI Analyst, or Associate positions. Open to both remote and on-site opportunities.
+            <div className="resume-highlight-box">
+              <div className="highlight-box-header">
+                <CheckCircle2 size={18} className="text-accent" />
+                <h4 className="highlight-box-title">Role Availability</h4>
+              </div>
+              <p className="highlight-box-desc">
+                Open to entry-level / associate Data Analyst or BI Analyst roles. 
+                Flexible with remote, hybrid, or on-site opportunities.
               </p>
             </div>
           </div>

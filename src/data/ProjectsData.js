@@ -1,25 +1,27 @@
 export const projectsData = [
   {
     id: 'ipl-franchise-roi',
-    title: 'IPL Franchise Valuation & Player ROI Analytics',
+    title: 'IPL Player Valuation & Auction ROI Analytics',
     category: 'Power BI',
-    subtitle: 'Interactive "Moneyball" Sports Analytics & Capital Allocation Dashboard',
-    toolTags: ['Power BI', 'DAX Measures', 'Power Query ETL', 'Star Schema', 'Sports Analytics'],
+    subtitle: 'Sports Analytics & Player Valuation Dashboard',
+    toolTags: ['Power BI', 'DAX Measures', 'Power Query ETL', 'Star Schema'],
+    summary:
+      'Analyzed IPL player auction data across 10 teams to evaluate player cost vs. on-field performance, uncovering undervalued players and inefficient team salary allocations.',
     problem:
-      'During the IPL auction, franchises spend massive budgets (totaling upwards of ₹1,192 Crores across the league). However, high auction prices do not guarantee high performance, leading to salary cap inefficiencies and misaligned player valuations.',
+      'In high-stakes sports auctions with budgets exceeding ₹1,100+ Crores, teams frequently overpay for hype while overlooking high-performing value players due to lack of normalized performance metrics.',
     methodology:
-      'Engineered a role-isolated semantic model in Power BI using Power Query ETL for data hygiene. Built custom DAX measures (Cost_Per_Run_₹, Cost_Per_Wicket_₹) to establish equitable baseline comparisons, and designed interactive franchise tile slicers, dynamic KPI scorecards, and dual-pillar ROI scatter quadrants.',
+      'Built a normalized Star Schema data model in Power BI. Created custom DAX metrics (Cost per Run, Cost per Wicket, and Value Index) and built interactive quadrant scatter charts and team slicers to compare player ROI fairly across batting and bowling roles.',
     impact:
-      'Pinpointed high-impact "Draft Steals" (undervalued bargains providing high output at low cost) and exposed costly investments consuming cap space with minimal output, delivering actionable data to audit franchise bidding strategies.',
+      'Identified 18+ high-value bargain players ("draft steals") and highlighted key areas where franchise budgets were misallocated, providing clear visual evidence for smarter bidding strategies.',
     keyMetrics: [
-      { label: 'League Spend Modeled', value: '₹1,192 Cr' },
-      { label: 'DAX Measures Built', value: '14+ Custom' },
-      { label: 'Draft Steals Found', value: '18+ Bargains' },
+      { label: 'Auction Spend Analyzed', value: '₹1,192 Cr' },
+      { label: 'Custom DAX Measures', value: '14+' },
+      { label: 'Value Picks Identified', value: '18+' },
     ],
     highlights: [
-      'Dual-Pillar ROI Quadrants separating Batting (Price vs Runs) and Bowling (Price vs Wickets)',
-      'Custom DAX isolating player roles to eliminate skewed multi-skill valuation bias',
-      'Dynamic KPI scorecard ribbon responsive to franchise and player-role slicers'
+      'Interactive ROI quadrants separating batting (price vs. runs) and bowling (price vs. wickets)',
+      'Normalized DAX measures isolating specialized player roles for fair valuation',
+      'Dynamic team and role slicers with instant KPI scorecard updates'
     ],
     liveLink: 'https://github.com/kiransundhesha18',
     docsLink: 'https://github.com/kiransundhesha18',
@@ -29,23 +31,25 @@ export const projectsData = [
     id: 'powerbi-sales',
     title: 'Sales & Inventory Performance Dashboard',
     category: 'Power BI',
-    subtitle: 'Executive Business Intelligence & Supply Chain Analytics',
+    subtitle: 'Executive Retail & Supply Chain Intelligence',
     toolTags: ['Power BI', 'Power Query', 'DAX', 'Star Schema', 'ETL Pipeline'],
+    summary:
+      'Built an end-to-end Power BI reporting dashboard tracking sales trends, regional revenue growth, and inventory stockout risks across multi-branch retail operations.',
     problem:
-      'Regional distribution hubs experienced unpredictable revenue variance and frequent inventory stockout risks across key product categories, costing ~12% in missed quarterly orders.',
+      'Retail branch managers had disconnected spreadsheet reports, making it difficult to detect stock shortages and revenue drops across 12 regional distribution centers in time.',
     methodology:
-      'Engineered an automated ETL workflow in Power Query consolidating 12 regional CSV sources, architected a normalized star-schema data model with 1-to-many relationships, and developed custom DAX measures for Year-over-Year revenue growth, rolling 30-day margins, and reorder threshold alerts.',
+      'Automated data preparation using Power Query to consolidate 185K+ rows of raw transaction data. Built a Star Schema model with date dimensions and authored DAX formulas for Year-over-Year (YoY) revenue and safety stock thresholds.',
     impact:
-      'Identified top 20% margin-driving SKUs and highlighted 3 chronic regional delivery bottlenecks, enabling actionable inventory rebalancing that decreased simulated stockout risk by 35%.',
+      'Provided leadership with real-time visibility into the top 20% margin-driving products and reduced simulated stockout occurrences by 35% through dynamic inventory alerts.',
     keyMetrics: [
       { label: 'YoY Growth Tracked', value: '+24.6%' },
-      { label: 'Stockout Risk Drop', value: '-35%' },
+      { label: 'Stockout Risk Reduced', value: '-35%' },
       { label: 'Data Rows Processed', value: '185K+' },
     ],
     highlights: [
-      'Interactive drill-through by Region, Category, and Quarter',
-      'Dynamic DAX KPIs (CALCULATE, SAMEPERIODLASTYEAR, DIVIDE)',
-      'Clean Star Schema model with unified Date and Dim tables'
+      'Interactive drill-through by region, product category, and fiscal quarter',
+      'Time-intelligence DAX calculations (SAMEPERIODLASTYEAR, Rolling Margins)',
+      'Clean Star Schema model linking Fact Sales to Customer and Product dimensions'
     ],
     liveLink: 'https://github.com/kiransundhesha18',
     docsLink: 'https://github.com/kiransundhesha18',
@@ -53,27 +57,27 @@ export const projectsData = [
   },
   {
     id: 'retail-supply-chain-analytics',
-    title: 'Enterprise Retail, Supply Chain & Marketing Analytics Suite',
+    title: 'Retail Sales & Supply Chain Financial Model',
     category: 'Excel',
-    subtitle: 'Commercial Analytics, Profit Leakage Diagnostics & Executive Command Center',
-    toolTags: ['Advanced Excel', 'XLOOKUP Modeling', 'Nested IF / IFS', 'PivotTables & Slicers', 'What-If Simulator', 'Supply Chain Analytics'],
+    subtitle: 'Financial & Operational Analytics in Advanced Excel',
+    toolTags: ['Advanced Excel', 'XLOOKUP', 'PivotTables', 'Nested Formulas', 'What-If Analysis'],
+    summary:
+      'Developed a comprehensive Excel decision model linking orders, inventory levels, and marketing ad channels to diagnose profit leakage and shipping SLA penalties.',
     problem:
-      'Omnichannel retail operations faced acute profit erosion driven by Return-to-Origin (RTO) charges on Cash on Delivery (COD) orders and delivery SLA breaches, which imposed a 1.5x return shipping penalty that flipped gross margins into net operational losses. Furthermore, unmonitored Days on Hand (DOH) risked stockouts, while multi-channel ad spend lacked granular CAC attribution.',
+      'E-commerce operations suffered from silent profit erosion caused by Cash on Delivery (COD) returns and delivery delays that incurred high reverse shipping penalty fees.',
     methodology:
-      'Engineered an end-to-end relational Excel architecture linking SKUS, ORDERS, INVENTORY, and MARKETING datasets using XLOOKUP key relationships. Built nested IF and IFS gatekeeping logic to audit customer returns, reverse shipping penalties, and automated inventory health statuses. Designed a locked Executive Command Center dashboard with top-level KPI cards, summary PivotTables, and a 2-variable What-If Pricing Simulator for C-suite scenario analysis.',
+      'Engineered a multi-sheet relational workbook using XLOOKUP, INDEX/MATCH, and nested IFS formulas. Built summary PivotTables, dynamic slicers, and a 2-variable What-If Pricing Simulator to test discount scenarios.',
     impact:
-      'Diagnosed negative contribution margins (e.g., -₹210 per order) on SLA-breached COD returns due to reverse logistics fees, flagged 7 critical reorders and 5 lead-time risks among 25 catalog SKUs at the Bhiwandi fulfillment hub, and identified high-efficiency marketing campaigns delivering up to 12x–44x ROAS to steer Q4 budget reallocation.',
+      'Identified critical stock reorder thresholds across warehouse SKUs and flagged unprofitable campaign channels, showing managers how to save on reverse logistics fees.',
     keyMetrics: [
-      { label: 'Peak Channel ROAS', value: '12x–44x' },
-      { label: 'Stock Risks Flagged', value: '12 SKUs' },
-      { label: 'RTO SLA Penalty', value: '-₹210/ord' },
+      { label: 'Top Ad Channel ROAS', value: '12x–44x' },
+      { label: 'Reorder SKUs Flagged', value: '12 Items' },
+      { label: 'Data Sheets Modeled', value: '4 Linked' },
     ],
     highlights: [
-      'Relational multi-sheet architecture using XLOOKUP across SKUS, ORDERS, INVENTORY, and MARKETING',
-      'Nested IF & IFS conditional formulas calculating COD return rates, 1.5x reverse logistics penalties, and SLA breach costs',
-      'Automated Days on Hand (DOH) & lead-time triggers auditing Bhiwandi fulfillment hub inventory (7 critical, 5 lead-time alerts)',
-      'Multi-channel digital ad efficiency analysis (Meta Ads, Google Search, Amazon) isolating high-ROAS acquisition campaigns',
-      'Lock-screen Executive Command Center dashboard with summary PivotTables, KPI cards, and a 2-variable What-If Pricing Simulator'
+      'Relational multi-tab architecture connecting Orders, Inventory, and Marketing datasets',
+      'Nested conditional logic to audit return rates and delivery SLA breach costs',
+      'Executive KPI dashboard with interactive PivotTables and What-If pricing sensitivity table'
     ],
     liveLink: 'https://github.com/kiransundhesha18',
     docsLink: 'https://github.com/kiransundhesha18',
@@ -81,25 +85,27 @@ export const projectsData = [
   },
   {
     id: 'sql-customer-insights',
-    title: 'Customer Transaction & Retention Analysis',
+    title: 'Customer Retention & Cohort Analysis in SQL',
     category: 'SQL',
-    subtitle: 'Relational Database Queries & Cohort Purchasing Behavior',
-    toolTags: ['PostgreSQL / MySQL', 'Aggregations', 'GROUP BY', 'Multi-Table JOINs', 'Subqueries'],
+    subtitle: 'Relational Database Queries & Repeat Purchase Trends',
+    toolTags: ['PostgreSQL / MySQL', 'Multi-Table JOINs', 'Aggregations', 'GROUP BY', 'Subqueries'],
+    summary:
+      'Queried a multi-table e-commerce database to analyze repeat purchase behavior, customer retention rates, and average order value across monthly cohorts.',
     problem:
-      'Analyzing multi-thousand-row purchase logs to identify repeat customer purchasing cycles, customer lifetime value (CLV) patterns, and average order volume (AOV) baselines for commercial expansion.',
+      'Marketing teams needed to understand at what point new customers stop reordering and which acquisition channels yielded the highest repeat customer lifetime value.',
     methodology:
-      'Wrote optimized SQL queries utilizing WHERE, CASE WHEN, and HAVING clauses; computed baseline metrics with SUM, AVG, and COUNT; and engineered multi-table INNER and LEFT JOINs connecting Customers, Orders, and Product line tables.',
+      'Wrote optimized SQL queries using multi-table INNER and LEFT JOINs, GROUP BY, HAVING, and CASE WHEN statements. Filtered 120K+ customer transactions to build monthly retention cohorts.',
     impact:
-      'Uncovered a 42% retention cliff between first-time and second-time buyers within 30 days, creating the empirical foundation for a targeted customer re-engagement campaign.',
+      'Discovered a critical 42% retention drop after 30 days of the first purchase, providing marketing with the exact time window needed for targeted re-engagement offers.',
     keyMetrics: [
       { label: 'Transactions Queried', value: '120K+' },
-      { label: 'Query Speedup', value: '2.4x' },
-      { label: 'Repeat Cohort Identified', value: '38.4%' },
+      { label: 'Repeat Cohort Rate', value: '38.4%' },
+      { label: 'Query Performance', value: 'Optimized' },
     ],
     highlights: [
-      'Multi-table relational schema JOINs with clean foreign key integrity',
-      'Aggregated cohort metrics by purchase frequency and monthly spend',
-      'Documented and tested query performance benchmarks'
+      'Multi-table relational schema joins across Users, Orders, and Product lines',
+      'Aggregated cohort metrics by monthly purchase cadence and customer spend tiers',
+      'Clean, documented SQL scripts with reusable CTE structures'
     ],
     liveLink: 'https://github.com/kiransundhesha18',
     docsLink: 'https://github.com/kiransundhesha18',

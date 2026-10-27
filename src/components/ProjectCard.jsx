@@ -1,31 +1,30 @@
 import { useState } from 'react';
-import { ExternalLink, ChevronDown, ChevronUp, Check, Database, BarChart, FileSpreadsheet, TrendingUp } from 'lucide-react';
+import { ExternalLink, ChevronDown, ChevronUp, Check, Database, BarChart2, FileSpreadsheet } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
 export default function ProjectCard({ project }) {
   const [expanded, setExpanded] = useState(false);
 
-  // Icon for category
   const getCategoryIcon = (category) => {
     switch (category) {
       case 'Power BI':
-        return <BarChart size={18} className="text-amber" />;
+        return <BarChart2 size={16} className="text-amber" />;
       case 'Excel':
-        return <FileSpreadsheet size={18} className="text-emerald" />;
+        return <FileSpreadsheet size={16} className="text-emerald" />;
       case 'SQL':
-        return <Database size={18} className="text-blue" />;
+        return <Database size={16} className="text-blue" />;
       default:
-        return <TrendingUp size={18} />;
+        return <BarChart2 size={16} />;
     }
   };
 
-  const getBadgeClass = (color) => {
-    switch (color) {
-      case 'amber':
+  const getCategoryBadgeClass = (category) => {
+    switch (category) {
+      case 'Power BI':
         return 'badge-amber';
-      case 'emerald':
+      case 'Excel':
         return 'badge-emerald';
-      case 'blue':
+      case 'SQL':
         return 'badge-blue';
       default:
         return 'badge-blue';
@@ -33,84 +32,75 @@ export default function ProjectCard({ project }) {
   };
 
   return (
-    <article className="project-card glass-card">
-      {/* Top Header: Category & Tags */}
+    <article className="project-card">
+      {/* Card Header */}
       <div className="project-card-header">
-        <div className="project-category-wrapper">
+        <div className={`project-category-badge ${getCategoryBadgeClass(project.category)}`}>
           {getCategoryIcon(project.category)}
-          <span className="project-category-name">{project.category} Project</span>
+          <span>{project.category}</span>
         </div>
-        <div className="project-tags-wrap">
-          {(project.toolTags || []).slice(0, 3).map((tag) => (
-            <span key={tag} className={`badge ${getBadgeClass(project.badgeColor)}`}>
-              {tag}
+
+        <div className="project-tools-wrap">
+          {(project.toolTags || []).slice(0, 3).map((tool) => (
+            <span key={tool} className="tool-chip">
+              {tool}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Title & Subtitle */}
-      <div className="project-card-title-area">
-        <h3 className="project-title">{project.title}</h3>
-        {project.subtitle && <p className="project-subtitle">{project.subtitle}</p>}
-      </div>
+      {/* Project Title & Subtitle */}
+      <h3 className="project-title">{project.title}</h3>
+      <p className="project-summary">{project.summary || project.problem}</p>
 
-      {/* Quantified Business KPI Badges */}
-      {project.keyMetrics && (
-        <div className="project-metrics-row">
+      {/* Key Metrics / Highlights */}
+      {project.keyMetrics && project.keyMetrics.length > 0 && (
+        <div className="project-metrics-grid">
           {project.keyMetrics.map((metric, idx) => (
-            <div key={idx} className="project-metric-pill">
-              <span className="metric-pill-val">{metric.value}</span>
-              <span className="metric-pill-lbl">{metric.label}</span>
+            <div key={idx} className="project-metric-box">
+              <span className="metric-box-val">{metric.value}</span>
+              <span className="metric-box-lbl">{metric.label}</span>
             </div>
           ))}
         </div>
       )}
 
-      {/* Structured Problem & Impact */}
-      <div className="project-narrative-sections">
-        <div className="narrative-block">
-          <div className="narrative-label">
-            <span className="narrative-indicator problem-dot"></span>
-            <span>Business Problem</span>
+      {/* Expandable Project Details */}
+      {expanded && (
+        <div className="project-expanded-panel">
+          <div className="expanded-block">
+            <h4 className="expanded-title">Business Problem</h4>
+            <p className="expanded-text">{project.problem}</p>
           </div>
-          <p className="narrative-text">{project.problem}</p>
-        </div>
 
-        <div className="narrative-block">
-          <div className="narrative-label">
-            <span className="narrative-indicator method-dot"></span>
-            <span>Methodology & Architecture</span>
+          <div className="expanded-block">
+            <h4 className="expanded-title">My Analytical Approach</h4>
+            <p className="expanded-text">{project.methodology}</p>
           </div>
-          <p className="narrative-text">{project.methodology}</p>
-        </div>
 
-        <div className="narrative-block impact-block">
-          <div className="narrative-label">
-            <span className="narrative-indicator impact-dot"></span>
-            <span>Key Business Impact</span>
+          <div className="expanded-block">
+            <h4 className="expanded-title">Key Insights & Takeaways</h4>
+            <p className="expanded-text">{project.impact}</p>
           </div>
-          <p className="narrative-text narrative-highlight">{project.impact}</p>
-        </div>
-      </div>
 
-      {/* Expandable Technical Highlights */}
-      {expanded && project.highlights && (
-        <div className="project-deep-dive">
-          <h4 className="deep-dive-title">Technical Execution Details:</h4>
-          <ul className="deep-dive-list">
-            {project.highlights.map((highlight, idx) => (
-              <li key={idx} className="deep-dive-item">
-                <Check size={14} className="deep-dive-check" />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
+          {project.highlights && project.highlights.length > 0 && (
+            <div className="expanded-block">
+              <h4 className="expanded-title">Technical Highlights</h4>
+              <ul className="expanded-list">
+                {project.highlights.map((h, idx) => (
+                  <li key={idx} className="expanded-item">
+                    <Check size={14} className="check-bullet" />
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Footer Actions */}
-      <div className="project-card-footer">
+      {/* Card Action Buttons */}
+      <div className="project-card-actions">
         <a
           href={project.liveLink || 'https://github.com/kiransundhesha18'}
           target="_blank"
@@ -118,21 +108,19 @@ export default function ProjectCard({ project }) {
           className="btn btn-primary project-action-btn"
         >
           <GithubIcon size={16} />
-          <span>View Source & Files</span>
+          <span>View on GitHub</span>
           <ExternalLink size={14} />
         </a>
 
-        {project.highlights && (
-          <button
-            type="button"
-            onClick={() => setExpanded(!expanded)}
-            className="btn btn-ghost project-toggle-btn"
-            aria-expanded={expanded}
-          >
-            <span>{expanded ? 'Less Details' : 'Tech Details'}</span>
-            {expanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => setExpanded(!expanded)}
+          className="btn btn-secondary project-toggle-btn"
+          aria-expanded={expanded}
+        >
+          <span>{expanded ? 'Less Details' : 'Details'}</span>
+          {expanded ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+        </button>
       </div>
     </article>
   );

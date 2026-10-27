@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Mail, Send, Copy, Check, MessageSquare, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Mail, Send, Copy, Check, ExternalLink } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', role: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const emailAddress = 'kiransundhesha56@gmail.com';
 
@@ -27,7 +27,6 @@ export default function Contact() {
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2500);
     } catch {
-      // Fallback if clipboard permission is denied
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2500);
     }
@@ -37,12 +36,10 @@ export default function Contact() {
     e.preventDefault();
     const cleanName = formData.name.trim();
     const cleanEmail = formData.email.trim();
-    const cleanRole = formData.role.trim();
     const cleanMsg = formData.message.trim();
 
     if (!cleanName || !cleanEmail) return;
 
-    // Email format sanity check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
       alert('Please enter a valid email address.');
@@ -50,56 +47,50 @@ export default function Contact() {
     }
 
     setFormSubmitted(true);
-    // Opens mail client with safely encoded, sanitized details
-    const subject = encodeURIComponent(`Data Analyst Inquiry from ${cleanName} - ${cleanRole || 'Opportunity'}`);
-    const body = encodeURIComponent(`Hi Kiran,\n\n${cleanMsg}\n\nBest regards,\n${cleanName}\n${cleanEmail}`);
+    const subject = encodeURIComponent(`Data Analyst Opportunity / Message from ${cleanName}`);
+    const body = encodeURIComponent(`Hi Kiran,\n\n${cleanMsg}\n\nFrom,\n${cleanName} (${cleanEmail})`);
     window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="contact" className="contact-section">
+    <section id="contact" className="section contact-section">
       <div className="container">
         <div className="section-header">
-          <div className="section-pill">
-            <MessageSquare size={14} />
-            <span>Connect & Collaborate</span>
-          </div>
-          <h2 className="section-title">Let's Discuss Opportunities</h2>
+          <span className="section-eyebrow">Contact</span>
+          <h2 className="section-title">Let&apos;s Connect</h2>
           <p className="section-subtitle">
-            Whether you have an open Junior Data Analyst position, a contract BI project, 
-            or simply want to review dashboard best practices, my inbox is always open.
+            Whether you have an open opportunity, a question about a project, or just want to connect, 
+            I&apos;d love to hear from you.
           </p>
         </div>
 
         <div className="contact-grid">
           {/* Direct Contact Cards */}
-          <div className="contact-channels-col">
-            {/* Email Card with 1-Click Copy */}
-            <div className="contact-channel-card glass-card">
-              <div className="channel-icon-box bg-blue-subtle">
-                <Mail size={22} className="text-blue" />
+          <div className="contact-info-col">
+            {/* Email Card */}
+            <div className="contact-card">
+              <div className="contact-card-icon">
+                <Mail size={20} className="text-accent" />
               </div>
-              <div className="channel-info">
-                <span className="channel-label">Direct Email</span>
-                <span className="channel-value">{emailAddress}</span>
+              <div className="contact-card-body">
+                <span className="contact-card-label">Email Address</span>
+                <span className="contact-card-value">{emailAddress}</span>
               </div>
-              <div className="channel-actions">
+              <div className="contact-card-actions">
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="btn btn-secondary channel-btn"
-                  title="Copy email address"
-                  aria-label="Copy email address"
+                  className="btn btn-secondary contact-mini-btn"
+                  title="Copy email to clipboard"
                 >
-                  {copiedEmail ? <Check size={16} className="text-emerald" /> : <Copy size={16} />}
-                  <span>{copiedEmail ? 'Copied!' : 'Copy'}</span>
+                  {copiedEmail ? <Check size={14} className="text-emerald" /> : <Copy size={14} />}
+                  <span>{copiedEmail ? 'Copied' : 'Copy'}</span>
                 </button>
                 <a
                   href={`mailto:${emailAddress}`}
-                  className="btn btn-primary channel-btn"
+                  className="btn btn-primary contact-mini-btn"
                 >
                   <span>Write</span>
-                  <ArrowUpRight size={15} />
                 </a>
               </div>
             </div>
@@ -109,16 +100,16 @@ export default function Contact() {
               href="https://www.linkedin.com/in/kiransundhesha018"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-channel-card glass-card channel-link-card"
+              className="contact-card contact-link-card"
             >
-              <div className="channel-icon-box bg-blue-subtle">
-                <LinkedinIcon size={22} className="text-blue" />
+              <div className="contact-card-icon">
+                <LinkedinIcon size={20} className="text-accent" />
               </div>
-              <div className="channel-info">
-                <span className="channel-label">Professional Network</span>
-                <span className="channel-value">linkedin.com/in/kiransundhesha018</span>
+              <div className="contact-card-body">
+                <span className="contact-card-label">LinkedIn</span>
+                <span className="contact-card-value">linkedin.com/in/kiransundhesha018</span>
               </div>
-              <ArrowUpRight size={18} className="channel-arrow" />
+              <ExternalLink size={16} className="contact-arrow" />
             </a>
 
             {/* GitHub Card */}
@@ -126,46 +117,38 @@ export default function Contact() {
               href="https://github.com/kiransundhesha18"
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-channel-card glass-card channel-link-card"
+              className="contact-card contact-link-card"
             >
-              <div className="channel-icon-box bg-purple-subtle">
-                <GithubIcon size={22} className="text-purple" />
+              <div className="contact-card-icon">
+                <GithubIcon size={20} className="text-accent" />
               </div>
-              <div className="channel-info">
-                <span className="channel-label">Project Code & Queries</span>
-                <span className="channel-value">github.com/kiransundhesha18</span>
+              <div className="contact-card-body">
+                <span className="contact-card-label">GitHub</span>
+                <span className="contact-card-value">github.com/kiransundhesha18</span>
               </div>
-              <ArrowUpRight size={18} className="channel-arrow" />
+              <ExternalLink size={16} className="contact-arrow" />
             </a>
 
-            {/* Availability Box */}
-            <div className="availability-card glass-card">
-              <div className="availability-status">
-                <span className="pulse-dot"></span>
-                <span className="availability-status-text">Available Immediately</span>
-              </div>
-              <p className="availability-desc">
-                Currently available for full-time Data Analyst, BI Analyst, or Associate Data Engineer roles. 
-                Ready to contribute on Day 1.
-              </p>
+            {/* Availability Note */}
+            <div className="contact-status-card">
+              <span className="pulse-dot"></span>
+              <span>Open to full-time Data Analyst & BI opportunities</span>
             </div>
           </div>
 
           {/* Quick Message Form */}
           <div className="contact-form-col">
-            <div className="contact-form-card glass-card">
-              <div className="form-card-header">
-                <Sparkles size={18} className="text-blue" />
-                <h3 className="form-card-title">Send a Quick Message</h3>
-              </div>
+            <div className="contact-form-card">
+              <h3 className="form-heading">Send a Quick Message</h3>
+              <p className="form-subtext">Fill this out and it will open your email client pre-addressed to me.</p>
 
               {formSubmitted ? (
-                <div className="form-success-state">
-                  <div className="success-icon-box">
-                    <Check size={32} className="text-emerald" />
+                <div className="form-success-box">
+                  <div className="success-icon-wrap">
+                    <Check size={24} className="text-emerald" />
                   </div>
-                  <h4>Message Prepared!</h4>
-                  <p>Opening your default email client with your message pre-filled. Looking forward to speaking!</p>
+                  <h4>Ready to Send!</h4>
+                  <p>Your email client is opening with your pre-filled message. Talk soon!</p>
                   <button
                     type="button"
                     onClick={() => setFormSubmitted(false)}
@@ -177,28 +160,26 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="contact-form">
-                  <div className="form-group-row">
-                    <div className="form-group">
-                      <label htmlFor="contact-name">Your Name *</label>
+                  <div className="form-row">
+                    <div className="form-field">
+                      <label htmlFor="name" className="form-label">Your Name</label>
                       <input
-                        id="contact-name"
+                        id="name"
                         type="text"
                         required
-                        maxLength={100}
-                        placeholder="e.g. Sarah Jenkins"
+                        placeholder="e.g. Sarah Connor"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="form-input"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="contact-email">Email Address *</label>
+                    <div className="form-field">
+                      <label htmlFor="email" className="form-label">Email Address</label>
                       <input
-                        id="contact-email"
+                        id="email"
                         type="email"
                         required
-                        maxLength={120}
-                        placeholder="sarah@company.com"
+                        placeholder="sarah@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="form-input"
@@ -206,35 +187,22 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="form-group">
-                    <label htmlFor="contact-role">Role / Opportunity Type</label>
-                    <input
-                      id="contact-role"
-                      type="text"
-                      maxLength={120}
-                      placeholder="e.g. Junior Data Analyst / BI Specialist"
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      className="form-input"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="contact-message">Message or Project Scope</label>
+                  <div className="form-field">
+                    <label htmlFor="message" className="form-label">Message</label>
                     <textarea
-                      id="contact-message"
+                      id="message"
                       rows={4}
-                      maxLength={1500}
-                      placeholder="Tell me about the role, team, or data challenge you're solving..."
+                      required
+                      placeholder="Hi Kiran, I liked your IPL analytics project and would love to discuss an analyst role..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="form-input form-textarea"
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="btn btn-primary submit-btn">
-                    <Send size={16} />
-                    <span>Send Message to Kiran</span>
+                  <button type="submit" className="btn btn-primary form-submit-btn">
+                    <Send size={15} />
+                    <span>Send Message</span>
                   </button>
                 </form>
               )}

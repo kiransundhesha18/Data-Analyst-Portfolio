@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { projectsData } from '../data/ProjectsData';
 import ProjectCard from './ProjectCard';
-import { Filter, Layers } from 'lucide-react';
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -14,24 +13,18 @@ export default function Projects() {
       : projectsData.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="section projects-section">
       <div className="container">
-        {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <Layers size={14} />
-            <span>Featured Case Studies</span>
-          </div>
-          <h2 className="section-title">
-            Data Modeling & Business Solutions
-          </h2>
+          <span className="section-eyebrow">Portfolio</span>
+          <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">
-            Demonstrating end-to-end competencies from raw data transformation and statistical modeling 
-            to interactive executive visualization and actionable commercial outcomes.
+            Hands-on data analytics projects showcasing business intelligence dashboards, 
+            relational database queries, and spreadsheet decision models.
           </p>
 
           {/* Category Filter Tabs */}
-          <div className="projects-filter-bar">
+          <div className="filter-tabs-row">
             {categories.map((cat) => {
               const count =
                 cat === 'All'
@@ -42,10 +35,10 @@ export default function Projects() {
                   type="button"
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`filter-tab-btn ${selectedCategory === cat ? 'active' : ''}`}
+                  className={`filter-btn ${selectedCategory === cat ? 'active' : ''}`}
                 >
                   <span>{cat}</span>
-                  <span className="filter-count">({count})</span>
+                  <span className="filter-badge">({count})</span>
                 </button>
               );
             })}
@@ -54,15 +47,9 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="projects-grid">
-          {filteredProjects.length > 0 ? (
-            filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))
-          ) : (
-            <div className="glass-card" style={{ padding: '2.5rem', textAlign: 'center', gridColumn: '1 / -1' }}>
-              <p style={{ color: 'var(--text-secondary)' }}>No projects found for the selected category.</p>
-            </div>
-          )}
+          {filteredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
         </div>
       </div>
     </section>

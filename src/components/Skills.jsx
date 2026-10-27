@@ -1,96 +1,92 @@
-import { skillsData, quickStats } from '../data/SkillData';
-import { BarChart3, FileSpreadsheet, Database, TrendingUp, Cpu, Award, CheckCircle, Clock } from 'lucide-react';
+import { BarChart2, Database, FileSpreadsheet, TrendingUp, Check } from 'lucide-react';
 
 export default function Skills() {
-  const getCategoryIcon = (iconName) => {
-    switch (iconName) {
-      case 'BarChart3':
-        return <BarChart3 className="skill-icon text-amber" size={24} />;
-      case 'FileSpreadsheet':
-        return <FileSpreadsheet className="skill-icon text-emerald" size={24} />;
-      case 'Database':
-        return <Database className="skill-icon text-blue" size={24} />;
-      case 'TrendingUp':
-        return <TrendingUp className="skill-icon text-purple" size={24} />;
-      default:
-        return <Cpu className="skill-icon" size={24} />;
-    }
-  };
-
-  const getBadgeClass = (variant) => {
-    switch (variant) {
-      case 'amber':
-        return 'badge-amber';
-      case 'emerald':
-        return 'badge-emerald';
-      case 'blue':
-        return 'badge-blue';
-      case 'purple':
-        return 'badge-purple';
-      default:
-        return 'badge-blue';
-    }
-  };
+  const skillCategories = [
+    {
+      id: 'power-bi',
+      title: 'Power BI & BI Modeling',
+      icon: <BarChart2 size={24} className="skill-cat-icon icon-amber" />,
+      tag: 'Primary Tool',
+      description: 'Building end-to-end business intelligence dashboards and scalable Star Schema data models.',
+      skills: [
+        'DAX Measures (CALCULATE, RELATED, Time-Intelligence)',
+        'Star Schema & Relational Data Modeling',
+        'Power Query & Automated ETL Transformations',
+        'Executive KPI Dashboards & Interactive Slicers',
+        'Drill-through & Detailed Report Views',
+      ],
+    },
+    {
+      id: 'sql',
+      title: 'SQL & Relational Databases',
+      icon: <Database size={24} className="skill-cat-icon icon-blue" />,
+      tag: 'Core Proficiency',
+      description: 'Querying, joining, and filtering multi-table databases to extract actionable numbers.',
+      skills: [
+        'Multi-Table JOINs (INNER, LEFT, RIGHT)',
+        'Aggregations (SUM, AVG, COUNT, MIN/MAX)',
+        'GROUP BY & HAVING Clauses',
+        'Subqueries, Filtering & CASE WHEN Logic',
+        'PostgreSQL & MySQL Querying',
+      ],
+    },
+    {
+      id: 'excel',
+      title: 'Advanced Microsoft Excel',
+      icon: <FileSpreadsheet size={24} className="skill-cat-icon icon-emerald" />,
+      tag: 'Core Proficiency',
+      description: 'Transforming spreadsheets into dynamic financial models and automated reporting sheets.',
+      skills: [
+        'XLOOKUP, INDEX/MATCH & Modern Formulas',
+        'Dynamic PivotTables & Pivot Charts',
+        'Nested IF / IFS & Error Handling',
+        'What-If Scenario & Sensitivity Modeling',
+        'Data Cleaning & Validation Rules',
+      ],
+    },
+    {
+      id: 'analytics',
+      title: 'Business Analytics & Methods',
+      icon: <TrendingUp size={24} className="skill-cat-icon icon-purple" />,
+      tag: 'Mindset',
+      description: 'Translating quantitative numbers into clear takeaways that solve practical business problems.',
+      skills: [
+        'Exploratory Data Analysis (EDA)',
+        'Data Hygiene & Anomaly Detection',
+        'KPI Formulation & Variance Tracking',
+        'Actionable Executive Summaries',
+        'Root Cause & Cohort Retention Analysis',
+      ],
+    },
+  ];
 
   return (
-    <section id="skills" className="skills-section">
+    <section id="skills" className="section skills-section">
       <div className="container">
-        {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <Award size={14} />
-            <span>Technical & Analytical Toolkit</span>
-          </div>
-          <h2 className="section-title">End-to-End Analytics Capabilities</h2>
+          <span className="section-eyebrow">Toolkit</span>
+          <h2 className="section-title">Skills & Capabilities</h2>
           <p className="section-subtitle">
-            A comprehensive matrix of technical tools, data manipulation frameworks, 
-            and analytical methodologies used to solve complex commercial challenges.
+            The core tools, query languages, and analytical methodologies I use to turn raw data into insights.
           </p>
         </div>
 
-        {/* Quick Quantitative Stats Row */}
-        <div className="skills-stats-grid">
-          {(quickStats || []).map((stat, idx) => (
-            <div key={idx} className="stat-card glass-card">
-              <span className="stat-number gradient-text">{stat.value}</span>
-              <span className="stat-title">{stat.label}</span>
-              <span className="stat-helper">{stat.helper}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Skills Cards Grid */}
-        <div className="skills-matrix-grid">
-          {(skillsData || []).map((category) => (
-            <div key={category.id} className="skill-card glass-card">
+        <div className="skills-grid">
+          {skillCategories.map((cat) => (
+            <div key={cat.id} className="skill-card">
               <div className="skill-card-top">
-                <div className="skill-icon-box">
-                  {getCategoryIcon(category.icon)}
-                </div>
-                <div className="skill-meta">
-                  <span className={`badge ${getBadgeClass(category.badgeVariant)}`}>
-                    {category.level}
-                  </span>
-                </div>
+                <div className="skill-icon-box">{cat.icon}</div>
+                <span className="skill-badge">{cat.tag}</span>
               </div>
 
-              <h3 className="skill-category-title">{category.category}</h3>
-              <p className="skill-category-desc">{category.description}</p>
+              <h3 className="skill-title">{cat.title}</h3>
+              <p className="skill-description">{cat.description}</p>
 
-              <div className="skill-items-list">
-                {category.skills.map((skill, sIdx) => (
-                  <div key={sIdx} className="skill-item-row">
-                    <div className="skill-name-wrap">
-                      {skill.status === 'In Progress' ? (
-                        <Clock size={15} className="status-icon in-progress" />
-                      ) : (
-                        <CheckCircle size={15} className="status-icon completed" />
-                      )}
-                      <span className="skill-name">{skill.name}</span>
-                    </div>
-                    {skill.status === 'In Progress' && (
-                      <span className="skill-status-tag">Active Focus</span>
-                    )}
+              <div className="skill-list">
+                {cat.skills.map((skill, sIdx) => (
+                  <div key={sIdx} className="skill-item">
+                    <Check size={14} className="skill-check" />
+                    <span>{skill}</span>
                   </div>
                 ))}
               </div>

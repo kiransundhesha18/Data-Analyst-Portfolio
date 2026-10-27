@@ -1,194 +1,148 @@
-import { useState } from 'react';
-import { ArrowRight, Download, FileText, Database, TrendingUp, Layers, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Download, Mail, MapPin, Sparkles, FolderGit2, Award, Briefcase } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from './Icons';
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState('sales');
-
-  const metricTabs = {
-    sales: {
-      title: 'YoY Revenue & Margin Analysis',
-      kpi1: { label: 'Net Revenue', val: '$584,200', change: '+24.6% YoY', isPositive: true },
-      kpi2: { label: 'Gross Margin', val: '38.4%', change: '+5.2% Spread', isPositive: true },
-      kpi3: { label: 'Stockout Risk', val: '2.4%', change: '-35% Variance', isPositive: true },
-      path: 'M 10 90 Q 60 75 110 50 T 210 65 T 310 30 T 410 15',
-      areaPath: 'M 10 90 Q 60 75 110 50 T 210 65 T 310 30 T 410 15 L 410 110 L 10 110 Z',
-      badge: 'Power BI & DAX Modeling',
-    },
-    inventory: {
-      title: 'Retail Supply Chain & RTO Diagnostics',
-      kpi1: { label: 'Peak ROAS', val: '44x', change: 'Marketplace Ads', isPositive: true },
-      kpi2: { label: 'Stock Alerts', val: '12 SKUs', change: 'Bhiwandi Hub', isPositive: true },
-      kpi3: { label: 'RTO Penalty', val: '1.5x Ship', change: 'SLA Breach Cost', isPositive: false },
-      path: 'M 10 30 Q 60 45 110 70 T 210 55 T 310 80 T 410 95',
-      areaPath: 'M 10 30 Q 60 45 110 70 T 210 55 T 310 80 T 410 95 L 410 110 L 10 110 Z',
-      badge: 'Advanced Excel & Command Center',
-    },
-    retention: {
-      title: 'Cohort Retention & LTV SQL Model',
-      kpi1: { label: 'Repeat Buyers', val: '38.4%', change: '+12.1% Cohort', isPositive: true },
-      kpi2: { label: 'Avg Order Value', val: '$148.50', change: '+8.4% Lift', isPositive: true },
-      kpi3: { label: 'Query Latency', val: '84ms', change: '2.4x Faster', isPositive: true },
-      path: 'M 10 80 Q 70 85 130 55 T 230 40 T 330 35 T 410 20',
-      areaPath: 'M 10 80 Q 70 85 130 55 T 230 40 T 330 35 T 410 20 L 410 110 L 10 110 Z',
-      badge: 'Relational SQL & Aggregations',
-    },
-  };
-
-  const currentData = metricTabs[activeTab] || metricTabs.sales;
-
   return (
     <section id="home" className="hero-section">
-      <div className="glow-orb-top"></div>
       <div className="container hero-container">
-        {/* Left / Top: Value Proposition */}
+        {/* Main Personal Intro */}
         <div className="hero-content">
           <div className="hero-status-pill">
             <span className="pulse-dot"></span>
-            <span>Open to Data Analyst & BI Roles</span>
+            <span>Available for Data Analyst Roles</span>
           </div>
 
           <h1 className="hero-headline">
-            Turning Complex Data Into{' '}
-            <span className="gradient-text">Actionable Business Value.</span>
+            Hi, I&apos;m <span className="highlight-name">Kiran Sundhesha</span>
           </h1>
 
-          <p className="hero-description">
-            Aspiring Data Analyst skilled in <strong>Power BI</strong>, <strong>Excel</strong>, and <strong>SQL</strong>. 
-            I engineer reliable ETL pipelines, architect Star Schema models, and build decision-ready executive dashboards that answer commercial questions.
+          <p className="hero-tagline">
+            Aspiring Data Analyst <span className="tagline-dot">•</span> Power BI <span className="tagline-dot">•</span> SQL <span className="tagline-dot">•</span> Advanced Excel
           </p>
 
+          <p className="hero-description">
+            I turn messy, complex datasets into clear, interactive dashboards and actionable insights. 
+            Passionate about Star Schema data modeling, automated reporting, and helping teams make 
+            confident decisions through data.
+          </p>
+
+          {/* Quick Skill Tags */}
+          <div className="hero-skills-row">
+            <span className="hero-skill-chip">Power BI & DAX</span>
+            <span className="hero-skill-chip">SQL (PostgreSQL/MySQL)</span>
+            <span className="hero-skill-chip">Advanced Excel & PivotTables</span>
+            <span className="hero-skill-chip">Power Query ETL</span>
+            <span className="hero-skill-chip">Data Modeling</span>
+          </div>
+
+          {/* Call to Actions */}
           <div className="hero-cta-group">
             <a href="#projects" className="btn btn-primary">
-              <span>Explore Projects</span>
-              <ArrowRight size={17} />
+              <span>View Projects</span>
+              <ArrowRight size={16} />
             </a>
             <a
               href="/Resume.pdf"
               download="Kiran_Sundhesha_Data_Analyst.pdf"
               className="btn btn-secondary"
             >
-              <Download size={17} />
-              <span>Download Resume</span>
+              <Download size={16} />
+              <span>Resume</span>
+            </a>
+            <a href="#contact" className="btn btn-outline">
+              <Mail size={16} />
+              <span>Contact Me</span>
             </a>
           </div>
 
-          {/* Quick Credential Highlights */}
-          <div className="hero-highlights-list">
-            <div className="hero-highlight-item">
-              <CheckCircle2 size={16} className="highlight-icon" />
-              <span>DAX & Star Schema</span>
+          {/* Social Links & Location */}
+          <div className="hero-footer-meta">
+            <div className="hero-social-links">
+              <a
+                href="https://github.com/kiransundhesha18"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon-btn"
+                aria-label="GitHub Profile"
+                title="GitHub"
+              >
+                <GithubIcon size={18} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/kiransundhesha018"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon-btn"
+                aria-label="LinkedIn Profile"
+                title="LinkedIn"
+              >
+                <LinkedinIcon size={18} />
+              </a>
+              <a
+                href="mailto:kiransundhesha56@gmail.com"
+                className="social-icon-btn"
+                aria-label="Email Kiran"
+                title="Email"
+              >
+                <Mail size={18} />
+              </a>
             </div>
-            <div className="hero-highlight-item">
-              <CheckCircle2 size={16} className="highlight-icon" />
-              <span>Advanced Excel & Modeling</span>
-            </div>
-            <div className="hero-highlight-item">
-              <CheckCircle2 size={16} className="highlight-icon" />
-              <span>SQL Queries & Aggregations</span>
+
+            <div className="hero-location-badge">
+              <MapPin size={15} />
+              <span>India • Open to Remote & On-site</span>
             </div>
           </div>
         </div>
 
-        {/* Right / Bottom: Live Data Visualization Card */}
-        <div className="hero-visual-wrapper">
-          <div className="hero-dashboard-card glass-card">
-            {/* Card Topbar */}
-            <div className="dashboard-card-header">
-              <div className="dashboard-header-title">
-                <div className="dashboard-dot-indicator"></div>
-                <span>Executive Data Monitor</span>
+        {/* Right: Personal Snapshot Card */}
+        <div className="hero-card-column">
+          <div className="personal-card">
+            <div className="personal-card-header">
+              <div className="personal-avatar">
+                <span>KS</span>
+                <span className="avatar-online-dot"></span>
               </div>
-              <span className="badge badge-blue">{currentData.badge}</span>
-            </div>
-
-            {/* Interactive Tab Switcher */}
-            <div className="dashboard-tabs">
-              <button
-                type="button"
-                className={`dashboard-tab ${activeTab === 'sales' ? 'active' : ''}`}
-                onClick={() => setActiveTab('sales')}
-              >
-                Revenue YoY
-              </button>
-              <button
-                type="button"
-                className={`dashboard-tab ${activeTab === 'inventory' ? 'active' : ''}`}
-                onClick={() => setActiveTab('inventory')}
-              >
-                Inventory
-              </button>
-              <button
-                type="button"
-                className={`dashboard-tab ${activeTab === 'retention' ? 'active' : ''}`}
-                onClick={() => setActiveTab('retention')}
-              >
-                Retention SQL
-              </button>
-            </div>
-
-            {/* 3 Metric KPI Cards */}
-            <div className="dashboard-kpi-grid">
-              <div className="dashboard-kpi-box">
-                <span className="kpi-label">{currentData.kpi1.label}</span>
-                <span className="kpi-value">{currentData.kpi1.val}</span>
-                <span className="kpi-change positive">{currentData.kpi1.change}</span>
-              </div>
-              <div className="dashboard-kpi-box">
-                <span className="kpi-label">{currentData.kpi2.label}</span>
-                <span className="kpi-value">{currentData.kpi2.val}</span>
-                <span className="kpi-change positive">{currentData.kpi2.change}</span>
-              </div>
-              <div className="dashboard-kpi-box">
-                <span className="kpi-label">{currentData.kpi3.label}</span>
-                <span className="kpi-value">{currentData.kpi3.val}</span>
-                <span className="kpi-change positive">{currentData.kpi3.change}</span>
+              <div>
+                <h2 className="personal-card-name">Kiran Sundhesha</h2>
+                <p className="personal-card-sub">Data Analyst Portfolio</p>
               </div>
             </div>
 
-            {/* Live SVG Trend Visualizer */}
-            <div className="dashboard-chart-container">
-              <div className="chart-header">
-                <span className="chart-title">{currentData.title}</span>
-                <span className="chart-indicator">Interactive Simulation</span>
+            <div className="personal-highlights-list">
+              <div className="personal-highlight-row">
+                <div className="highlight-icon-wrap icon-amber">
+                  <FolderGit2 size={16} />
+                </div>
+                <div>
+                  <span className="highlight-title">4 Portfolio Projects</span>
+                  <span className="highlight-desc">Power BI, SQL queries & Excel modeling</span>
+                </div>
               </div>
-              <div className="svg-chart-wrapper">
-                <svg
-                  viewBox="0 0 420 120"
-                  className="hero-svg-chart"
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.35" />
-                      <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
-                    </linearGradient>
-                  </defs>
-                  {/* Subtle Gridlines */}
-                  <line x1="0" y1="30" x2="420" y2="30" stroke="var(--border-subtle)" strokeDasharray="3 3" />
-                  <line x1="0" y1="65" x2="420" y2="65" stroke="var(--border-subtle)" strokeDasharray="3 3" />
-                  <line x1="0" y1="100" x2="420" y2="100" stroke="var(--border-subtle)" strokeDasharray="3 3" />
 
-                  {/* Gradient Area Fill */}
-                  <path d={currentData.areaPath} fill="url(#chartGradient)" />
+              <div className="personal-highlight-row">
+                <div className="highlight-icon-wrap icon-emerald">
+                  <Award size={16} />
+                </div>
+                <div>
+                  <span className="highlight-title">Certified Analyst</span>
+                  <span className="highlight-desc">Hands-on BI & SQL coursework</span>
+                </div>
+              </div>
 
-                  {/* Glowing Stroke Curve */}
-                  <path
-                    d={currentData.path}
-                    fill="none"
-                    stroke="#3b82f6"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    className="animated-chart-line"
-                  />
-                </svg>
+              <div className="personal-highlight-row">
+                <div className="highlight-icon-wrap icon-blue">
+                  <Briefcase size={16} />
+                </div>
+                <div>
+                  <span className="highlight-title">Ready for Hiring</span>
+                  <span className="highlight-desc">Immediate joiner for full-time roles</span>
+                </div>
               </div>
-              <div className="chart-footer-metrics">
-                <span>Jan</span>
-                <span>Apr</span>
-                <span>Jul</span>
-                <span>Oct</span>
-                <span>Dec (Target Achieved)</span>
-              </div>
+            </div>
+
+            <div className="personal-card-quote">
+              <p>&ldquo;Data is only as valuable as the decisions it empowers.&rdquo;</p>
             </div>
           </div>
         </div>
