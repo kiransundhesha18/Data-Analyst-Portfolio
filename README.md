@@ -1,11 +1,11 @@
 # Kiran Sundhesha - Data Analyst Portfolio
 
 [![Deploy to GitHub Pages](https://github.com/kiransundhesha18/Data-Analyst-Portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/kiransundhesha18/Data-Analyst-Portfolio/actions/workflows/deploy.yml)
-[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-2563eb?style=flat&logo=google-chrome&logoColor=white)](https://kk-insights.com/)
+[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-2563eb?style=flat&logo=google-chrome&logoColor=white)](https://kiransundhesha18.github.io/Data-Analyst-Portfolio/)
 
 A modern, responsive, and interactive portfolio website showcasing Data Analytics projects, interactive dashboards, SQL case studies, and business intelligence solutions.
 
-🌐 **Live Demo:** [https://kk-insights.com/](https://kk-insights.com/)
+🌐 **Live Demo:** [https://kiransundhesha18.github.io/Data-Analyst-Portfolio/](https://kiransundhesha18.github.io/Data-Analyst-Portfolio/)
 
 ---
 
