@@ -8,7 +8,7 @@ export default function Resume() {
     const summary = `Kiran Sundhesha - Aspiring Data Analyst
 Education: MCA - Master of Computer Applications (2026) | BCA (2024)
 Core Skills: Power BI, Advanced Excel, SQL, DAX, Power Query ETL, Star Schema Modeling
-Projects: IPL Player Auction & Valuation Analytics, Retail Sales & Supply Chain Analytics, Customer Retention in SQL
+Projects: FMCG Retail Channel Profitability & Margin Analysis (Excel & Power Query)
 Status: Open to Full-time & Remote Data Analyst roles (Immediate Joiner)
 Email: kiransundhesha56@gmail.com
 GitHub: https://github.com/kiransundhesha18

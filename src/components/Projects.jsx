@@ -5,7 +5,7 @@ import ProjectCard from './ProjectCard';
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Power BI', 'Excel', 'SQL'];
+  const categories = ['All', ...Array.from(new Set(projectsData.map((p) => p.category)))];
 
   const filteredProjects =
     selectedCategory === 'All'
@@ -19,8 +19,8 @@ export default function Projects() {
           <span className="section-eyebrow">Portfolio</span>
           <h2 className="section-title">Featured Projects</h2>
           <p className="section-subtitle">
-            Hands-on data analytics projects showcasing business intelligence dashboards, 
-            relational database queries, and spreadsheet decision models.
+            Hands-on data analytics project showcasing financial modeling, 
+            automated ETL data pipelines, and spreadsheet decision dashboards.
           </p>
 
           {/* Category Filter Tabs */}
