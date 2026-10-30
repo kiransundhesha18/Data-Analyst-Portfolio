@@ -5,14 +5,26 @@ export default function Resume() {
   const [copied, setCopied] = useState(false);
 
   const handleCopySummary = async () => {
-    const summary = `Kiran Sundhesha - Aspiring Data Analyst
-Education: MCA - Master of Computer Applications (2026) | BCA (2024)
-Core Skills: Power BI, Advanced Excel, SQL, DAX, Power Query ETL, Star Schema Modeling
-Projects: FMCG Retail Channel Profitability & Margin Analysis (Excel & Power Query)
-Status: Open to Full-time & Remote Data Analyst roles (Immediate Joiner)
+    const summary = `Kiran Sundhesha - Data Analyst | Business Intelligence Specialist
+Location: Ahmedabad, Gujarat, India (Open to Remote)
 Email: kiransundhesha56@gmail.com
+LinkedIn: https://www.linkedin.com/in/kiransundhesha018
 GitHub: https://github.com/kiransundhesha18
-LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
+Education: MCA - Master of Computer Applications (Completed 2026) | BCA - Bachelor of Computer Applications (Completed 2024)
+
+Professional Summary:
+Detail-oriented, commercially focused Entry-Level Data Analyst with strong expertise in Power BI, Advanced Microsoft Excel, and Data ETL Pipelines. Experienced in transforming unorganized transactional data into normalized star-schema models, writing robust DAX measures, and designing high-impact executive dashboards that uncover revenue opportunities and optimize operational efficiency. Ready to contribute on Day 1.
+
+Technical Skills:
+• Business Intelligence: Power BI, DAX Expressions (Time Intelligence, RANKX), Star Schema Modeling, Power Query ETL, Executive Dashboards.
+• Spreadsheet Modeling: Microsoft Excel, Power Query Data Merging (No-VLOOKUP Pipelines), Excel Data Model (Power Pivot), Advanced PivotTables & Synchronized Slicers, Financial Margin Modeling.
+• Core Analytics: KPI Formulation, Variance Analysis, Supply Chain Metrics, Customer Cohort Diagnostics, Exploratory Data Analysis (EDA).
+
+Featured Case Studies & Projects:
+1. FMCG Retail Channel Profitability & Margin Analysis (Advanced Excel & Power Query ETL)
+2. Quick-Commerce Operations & SLA Performance Dashboard (Power BI & Advanced DAX)
+
+Status: Open to Full-time & Remote Data Analyst roles (Immediate Joiner)`;
 
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -56,12 +68,12 @@ LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
               </div>
               <div>
                 <h3 className="resume-name">Kiran Sundhesha</h3>
-                <p className="resume-role">Data Analyst Resume • MCA & BCA Graduate</p>
+                <p className="resume-role">Data Analyst | Business Intelligence Specialist</p>
                 <div className="resume-tags">
                   <span className="resume-tag">PDF Format</span>
-                  <span className="resume-tag">MCA & BCA</span>
-                  <span className="resume-tag">Power BI • SQL • Excel</span>
-                  <span className="resume-tag">Immediate Joiner</span>
+                  <span className="resume-tag">MCA & BCA Graduate</span>
+                  <span className="resume-tag">Power BI • Excel (Power Pivot) • ETL</span>
+                  <span className="resume-tag">Ready to Contribute Day 1</span>
                 </div>
               </div>
             </div>
@@ -93,7 +105,7 @@ LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
             <div className="resume-highlight-box">
               <div className="highlight-box-header">
                 <GraduationCap size={18} className="text-accent" />
-                <h4 className="highlight-box-title">Education & Degrees</h4>
+                <h4 className="highlight-box-title">Education</h4>
               </div>
               <p className="highlight-box-desc">
                 <strong>MCA</strong> - Master of Computer Applications (2026)<br />
@@ -104,33 +116,30 @@ LinkedIn: https://www.linkedin.com/in/kiransundhesha018`;
             <div className="resume-highlight-box">
               <div className="highlight-box-header">
                 <CheckCircle2 size={18} className="text-accent" />
-                <h4 className="highlight-box-title">Technical Toolkit</h4>
+                <h4 className="highlight-box-title">Technical Skills</h4>
               </div>
               <p className="highlight-box-desc">
-                Power BI (DAX, Star Schema), Advanced Excel (PivotTables, Dynamic Formulas), 
-                SQL (Multi-Table JOINs, Aggregations), Power Query ETL.
+                Power BI (DAX, Time Intelligence, RANKX, Star Schema), Advanced Excel (Power Pivot Data Model, Power Query ETL, Slicers, Financial Margin Modeling).
               </p>
             </div>
 
             <div className="resume-highlight-box">
               <div className="highlight-box-header">
                 <CheckCircle2 size={18} className="text-accent" />
-                <h4 className="highlight-box-title">Analytical Strengths</h4>
+                <h4 className="highlight-box-title">Core Analytics</h4>
               </div>
               <p className="highlight-box-desc">
-                Data cleaning, anomaly detection, cohort retention, supply chain metrics, 
-                and executive dashboard storytelling.
+                KPI Formulation, Variance Analysis, Supply Chain Metrics, Customer Cohort Diagnostics, Exploratory Data Analysis (EDA).
               </p>
             </div>
 
             <div className="resume-highlight-box">
               <div className="highlight-box-header">
                 <CheckCircle2 size={18} className="text-accent" />
-                <h4 className="highlight-box-title">Role Availability</h4>
+                <h4 className="highlight-box-title">Location & Availability</h4>
               </div>
               <p className="highlight-box-desc">
-                Open to entry-level / associate Data Analyst or BI Analyst roles. 
-                Flexible with remote, hybrid, or on-site opportunities.
+                Ahmedabad, Gujarat, India (Open to Remote). Immediate joiner ready to contribute as an Entry-Level Data Analyst / BI Specialist.
               </p>
             </div>
           </div>
